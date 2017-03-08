@@ -19,6 +19,8 @@ public class ReadExcelFile {
 		public 	Object[][] deletetestdata;
 		String 	sheet1 = "Add new rule";
 		String 	sheet2 = "Delete Rule";
+		String  sheet3 = "Edit Rule";
+		String  sheet4 = "Enable/Disable Rule";
 		String 	basepath;
 		String 	filenm;
 		
@@ -88,6 +90,13 @@ public class ReadExcelFile {
 		@DataProvider(name="Deleteruletestdata")
 		public Object[][] getDeleteRuleTestData(){
 			deletetestdata=readExcelSheet(basepath, filenm, sheet2);	
+			return deletetestdata;
+		}
+		
+		
+		@DataProvider(name="Editruletestdata")
+		public Object[][] getEditRuleTestData(){
+			deletetestdata=readExcelSheet(basepath, filenm, sheet3);	
 			return deletetestdata;
 		}
 		

@@ -55,6 +55,10 @@ public class BasePage {
 		driver.quit();
 	}
 	
+	public WebElement returnElement(By by)
+	{
+		return driver.findElement(by);
+	}
 	
 	public void click(By by){
 		driver.findElement(by).click();
@@ -68,20 +72,17 @@ public class BasePage {
 	public void selecttext(By by,String str)
 	{
 		Select comDropbox= new Select(driver.findElement(by));
-		comDropbox.selectByVisibleText(str);
-		
+		comDropbox.selectByVisibleText(str);	
 	}
 	
-	public void verifyRuleNameText(By by)
+	public String verifyRuleNameText(By by)
 	{
-		driver.findElement(by);
+		return driver.findElement(by).getText();	
 	}
 	
-	public WebElement returnElement(By by)
-	{
-		return driver.findElement(by);
+	public void clearText(By by){
+		driver.findElement(by).clear();
 	}
-	
 	
 	
 }

@@ -40,11 +40,11 @@ public class SettingPage extends BasePage{
 			
 	By okBtn = By.cssSelector(prop.Settingprop.getProperty("okBtnlocator"));
 	
-	
-
-	// locators for enable, delete rule on setting page
-	By enablebtn= By.xpath("//h3[text()='BANDWIDTH Rule']/parent::div/following::div[1]/div/button[text()='Enable']");
+	// locators for enable, delete ,edit rule on setting page
+	By enablebtn;
 	By deletebtn;
+	By editbtn;
+	WebElement ftv;
 	
 	
 	public SettingPage()
@@ -52,7 +52,7 @@ public class SettingPage extends BasePage{
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.get(prop.CONFIG.getProperty("appURL"));
-		wait = new WebDriverWait(driver, 5);
+		wait = new WebDriverWait(driver, 50);
 		
 	}
 	
@@ -106,24 +106,42 @@ public class SettingPage extends BasePage{
 	
 	public void addNewFilter(String attri, String filtercompa,String ftriggervalue)
 	{
+		
 		selecttext(attriDropbox, attri);
 		selecttext(comparatorDropbox, filtercompa);
 		
 		WebElement ftv=returnElement(filtertriggervalue);
-		ftv.sendKeys(Keys.TAB);
-		
 		wait.until(ExpectedConditions.presenceOfElementLocated(filtertriggervalue));
 		
-		sendkeys(filtertriggervalue,ftriggervalue);
-		try{
-		WebElement autoOptions = driver.findElement(By.xpath("//a[contains(text(),'"+ftriggervalue+"')]"));
-		autoOptions.click();
+		ftv.sendKeys(Keys.TAB);
+		sendkeys(filtertriggervalue, ftriggervalue);
+	
+		wait.until(ExpectedConditions.presenceOfElementLocated(filtertriggervalue));
 		
-		}catch (NoSuchElementException e) {
-			System.out.println(e.getStackTrace());
-		}
-		catch (Exception e) {
-			System.out.println(e.getStackTrace());
+		
+		if (ftriggervalue != "Timestamp" || ftriggervalue != "SLOT" || ftriggervalue != "PORT" || 
+			ftriggervalue != "APSLOTS" ||ftriggervalue != "BANDWIDTH" || ftriggervalue != "CLIENTCOUNT" ||ftriggervalue != "WLAN")
+		{
+				try{
+				WebElement autoOptions = driver.findElement(By.xpath("//a[contains(text(),'"+ftriggervalue+"')]"));
+				
+				List<WebElement> optionsToSelect = autoOptions.findElements(By.xpath("//a[contains(text(),'"+ftriggervalue+"')][1]"));
+				System.out.println("Options list: "+ optionsToSelect.containsAll(optionsToSelect));
+				for(WebElement option : optionsToSelect){
+			        if(option.getText().equals(ftriggervalue)) {
+			        	System.out.println("Trying to select: "+ftriggervalue);
+			            option.click();
+			            break;
+			        }
+				}
+				wait.until(ExpectedConditions.presenceOfElementLocated(filtertriggervalue));
+				
+				}catch (NoSuchElementException e) {
+					System.out.println(e.getStackTrace());
+				}
+				catch (Exception e) {
+					System.out.println(e.getStackTrace());
+				}
 		}
 	}
 	
@@ -137,12 +155,9 @@ public class SettingPage extends BasePage{
 			String timewindow,String msgtemplate)
 	{
 		selecttext(aggreDropboxcon, aggregation);
-	
 		selecttext(metricDrpboxcon, metric);
-	
 		selecttext(compDropboxcon, conditioncompa);
-		
-		
+
 		sendkeys(condTrrigerValue,conditiontriggervalue);
 		sendkeys(condTimeWindow,timewindow);
 		sendkeys(msgTemplate,msgtemplate);
@@ -161,29 +176,35 @@ public class SettingPage extends BasePage{
 	public void clickOKBtn()
 	{
 		click(okBtn);
+		wait.until(ExpectedConditions.presenceOfElementLocated(addnewrulebtn));
 	}
 	
-	public boolean verifyRuleNm(String rulenm)
-	{
-		By verifyrulenm= By.xpath("//*[contains(text(),'"+rulenm+"')]");
+	public String verifyText(String text)
+	{				
+	//	xpath  //h3[contains(text()='"+text+"')]
 		
-		boolean textfound=false;
-		try
-		{
-			verifyRuleNameText(verifyrulenm);
-			textfound=true;
-		}
-		catch (Exception e){
-			textfound=false;
-		}
-		return textfound;
-		
+		By element= By.xpath("//*[contains(text(),'"+text+"')]");
+		String verifystr=verifyRuleNameText(element);
+		return verifystr;		
 	}
 	
-	
-	public void clickdeleteRuleBtn(String rulenm)
-	{
+	public boolean verifyTextbyboolean(String text)
+	{				
+	//	xpath  //h3[contains(text()='"+text+"')]
+		boolean value;
+		By element= By.xpath("//*[contains(text(),'"+text+"')]");
+		String verifystr=verifyRuleNameText(element);
 		
+		if(verifystr != null)
+			value=true;
+		else
+			value=false;
+		return value;		
+	}
+	
+	//Delete rule button 
+	public void clickDeleteRuleBtn(String rulenm)
+	{
 		try{
 			deletebtn = By.xpath("//h3[text()='"+rulenm+"']/parent::div/following::div[1]/div/button[text()='Delete']");
 			if(deletebtn.toString()!=null){
@@ -197,5 +218,38 @@ public class SettingPage extends BasePage{
 		}
 		System.out.println("Delete to string : " + deletebtn.toString());
 	}
+	
+	
+	//Edit rule button 
+	public void clickEditRuleBtn(String rulenm)
+	{
+		try{
+			editbtn=By.xpath(".//h3[text()='"+rulenm+"']/parent::div/following::div[1]/div/button[1]");
+			if(editbtn.toString()!=null){
+				click(editbtn);
+				clearText(ruleName);
+				
+				ftv =returnElement(filtertriggervalue);
+				
+				ftv.sendKeys(Keys.chord(Keys.CONTROL)+"a");
+				ftv.sendKeys(Keys.BACK_SPACE);
+				ftv.sendKeys(Keys.TAB);
+				
+				clearText(filtertriggervalue);
+				clearText(condTrrigerValue);
+				clearText(condTimeWindow);
+				clearText(msgTemplate);
+				clearText(condExpression);
+				clearText(notiRuleMsg);
+				
+			}else
+				System.out.println("Rule not found !!!!"+rulenm);
+			
+		}
+		catch(Exception e){
+			e.getMessage();
+		}
+	}
+	
 	
 }

@@ -5,6 +5,7 @@ package com.SAFUI.Testscripts;
 import 	com.SAFUI.Pages.SettingPage;
 import 	com.SAFUI.Utils.ReadExcelFile;
 
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -13,12 +14,11 @@ import org.testng.annotations.*;
 public class AddNewRuleTestScript {
 	
 	SettingPage setpage;
-
+	
 	@BeforeClass
 	public void before()
 	{
 		setpage = new SettingPage();
-		
 	}
 
 	@AfterClass
@@ -34,7 +34,8 @@ public class AddNewRuleTestScript {
 									String aggregation,String metric,String conditioncompa,String conditiontriggervalue,
 									String timewindow,String msgtemplate, String conditionexpr,String notifyrule )
 	{
-
+		String text;
+		
 		System.out.println("in AddNewRuleBtn()");
 		setpage.clickAddNewRuleButton();
 		setpage.enterRuleName(rulenm);
@@ -50,18 +51,11 @@ public class AddNewRuleTestScript {
 		setpage.enterNotificationRuleMsg(notifyrule);
 		
 		setpage.clickOKBtn();
-		
+				
+		text =setpage.verifyText(rulenm);
+		Assert.assertEquals(rulenm,text);
 	}
 	
-	@Test(priority=2)
-	public void chkRuleCreation()
-	{
-		//System.out.println("in chkRuleCreation()");
-		boolean text =false;
-		text =setpage.verifyRuleNm("");
-//		Assert.assertEquals("", "Bandwidth Rule Automation Test", "The rule is not created");
-		Assert.assertEquals(text, true);
-	}
 	
 
 
