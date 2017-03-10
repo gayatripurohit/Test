@@ -5,6 +5,8 @@
     <classes>
       <class name="com.SAFUI.Testscripts.AddNewRuleTestScript"/>
       <class name="com.SAFUI.Testscripts.DeleteRuleTestScript"/>
+      <class name="com.SAFUI.Testscripts.EditRuleTestScript"/>
+      <class name="com.SAFUI.Testscripts.EnableRuleTestScript"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

@@ -40,7 +40,7 @@ public class AddNewRuleTestScript {
 		setpage.clickAddNewRuleButton();
 		setpage.enterRuleName(rulenm);
 		setpage.enterSeverity(severity);
-		
+		     
 		setpage.clickAddFilter();
 		setpage.addNewFilter(attri,filtercompa,filtertriggervalue);
 				

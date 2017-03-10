@@ -16,7 +16,7 @@ public class DeleteRuleTestScript {
 		setpage=new SettingPage();
 	}
 	
-	@AfterClass
+	@AfterClass     
 	public void after(){
 		setpage.closeAllDrivers();
 	}
@@ -24,7 +24,7 @@ public class DeleteRuleTestScript {
 	@Test(priority=1,dataProvider="Deleteruletestdata",dataProviderClass=ReadExcelFile.class)
 	public void deleterule(String rulenm)
 	{
-		String text,verify;
+		String text;    
 		text = setpage.verifyText(rulenm);
 		
 		if(text!=null && text.equals(rulenm)){

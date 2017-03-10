@@ -10,10 +10,8 @@ public class EditRuleTestScript {
 	SettingPage setpage;
 
 	@BeforeClass
-	public void before()
-	{
-		setpage = new SettingPage();
-		
+	public void before(){
+		setpage = new SettingPage();	
 	}
 
 	@AfterClass
@@ -55,13 +53,3 @@ public class EditRuleTestScript {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
