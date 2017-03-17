@@ -2,30 +2,26 @@
  * 
  */
 package com.SAFUI.Testscripts;
-import 	com.SAFUI.Pages.SettingPage;
-import 	com.SAFUI.Utils.ReadExcelFile;
+import 	com.SAFUI.Utils.*;
 
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 import org.testng.Assert;
 import org.testng.annotations.*;
 
 /**
  */
-public class AddNewRuleTestScript {
-	
-	SettingPage setpage;
+public class AddNewRuleTestScript extends  TestTemplate{
 	
 	@BeforeClass
 	public void before()
 	{
-		setpage = new SettingPage();
 	}
 
 	@AfterClass
 	public void closeBrowser()
 	{
 		System.out.println("in After class ");
-		setpage.closeAllDrivers();
+		base.closeAllDrivers();
 	}
 	
 	
@@ -37,6 +33,11 @@ public class AddNewRuleTestScript {
 		String text;
 		
 		System.out.println("in AddNewRuleBtn()");
+		
+		menu.goToSettingPage();
+		
+		setpage.locatorsForSetting();
+		
 		setpage.clickAddNewRuleButton();
 		setpage.enterRuleName(rulenm);
 		setpage.enterSeverity(severity);

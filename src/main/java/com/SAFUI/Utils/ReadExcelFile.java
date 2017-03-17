@@ -17,10 +17,14 @@ public class ReadExcelFile {
 		    
 		public  Object[][] Testdata;
 		public 	Object[][] deletetestdata;
+		public 	Object[][] edittestdata;
+		public 	Object[][] logintestdata;
+		
 		String 	sheet1 = "Add new rule";
 		String 	sheet2 = "Delete Rule";
 		String  sheet3 = "Edit Rule";
 		String  sheet4 = "Enable/Disable Rule";
+		String  sheet5 = "Login Credentials";
 		String 	basepath;
 		String 	filenm;
 		
@@ -68,8 +72,7 @@ public class ReadExcelFile {
 		            	String celldata = getCellData(sheetName, rCnt, cCnt);
 		            	 Testdata[rCnt-1][cCnt]= celldata; 
 		            }
-		        }
-			    
+		        }			    
 			}
 		catch(Exception e){
 			System.out.println(e.getMessage());
@@ -96,10 +99,15 @@ public class ReadExcelFile {
 		
 		@DataProvider(name="Editruletestdata")
 		public Object[][] getEditRuleTestData(){
-			deletetestdata=readExcelSheet(basepath, filenm, sheet3);	
-			return deletetestdata;
+			edittestdata=readExcelSheet(basepath, filenm, sheet3);	
+			return edittestdata;
 		}
 		
+		@DataProvider(name="logindata")
+		public Object[][] getLoginDetails(){
+			logintestdata= readExcelSheet(basepath, filenm, sheet5);	
+			return logintestdata;
+		}
 		
 		@SuppressWarnings("deprecation")
 		public  String getCellData(String sheetName, int row, int col){
@@ -126,7 +134,10 @@ public class ReadExcelFile {
 		            return String.valueOf(cell.getBooleanCellValue());                 
 
 		            case  Cell.CELL_TYPE_NUMERIC:
-		            return String.valueOf(cell.getNumericCellValue());          
+		            	  cell.setCellType(Cell.CELL_TYPE_STRING);
+		            	  return String.valueOf(cell.getStringCellValue());
+		            	  
+		            // String.valueOf(cell.getNumericCellValue());          
 
 		            case  Cell.CELL_TYPE_BLANK:
 			            return "";      

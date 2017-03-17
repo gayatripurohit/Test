@@ -3,10 +3,11 @@
 <suite name="Suite">
   <test name="Test">
     <classes>
+       <class name="com.SAFUI.Testscripts.LoginTestScript"/>
       <class name="com.SAFUI.Testscripts.AddNewRuleTestScript"/>
-      <class name="com.SAFUI.Testscripts.DeleteRuleTestScript"/>
+      <!-- <class name="com.SAFUI.Testscripts.DeleteRuleTestScript"/>
       <class name="com.SAFUI.Testscripts.EditRuleTestScript"/>
-      <class name="com.SAFUI.Testscripts.EnableRuleTestScript"/>
+      <class name="com.SAFUI.Testscripts.EnableRuleTestScript"/>  -->
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

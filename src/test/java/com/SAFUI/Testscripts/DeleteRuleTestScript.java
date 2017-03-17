@@ -2,29 +2,32 @@ package com.SAFUI.Testscripts;
 import org.testng.Assert;
 import  org.testng.annotations.*;
 import  com.SAFUI.Pages.SettingPage;
-import com.SAFUI.Utils.ReadExcelFile;
+import com.SAFUI.Utils.*;
 
 /**
   delete rule test script.
  */
-public class DeleteRuleTestScript {
+public class DeleteRuleTestScript extends  TestTemplate {
 	
-	SettingPage setpage;
+
 	
 	@BeforeClass
 	public void before(){
-		setpage=new SettingPage();
+		
 	}
 	
 	@AfterClass     
 	public void after(){
-		setpage.closeAllDrivers();
+		base.closeAllDrivers();
 	}
 	
 	@Test(priority=1,dataProvider="Deleteruletestdata",dataProviderClass=ReadExcelFile.class)
 	public void deleterule(String rulenm)
 	{
 		String text;    
+		
+		menu.goToSettingPage();
+		
 		text = setpage.verifyText(rulenm);
 		
 		if(text!=null && text.equals(rulenm)){

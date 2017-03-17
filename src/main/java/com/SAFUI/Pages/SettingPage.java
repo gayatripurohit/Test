@@ -4,56 +4,67 @@
 package com.SAFUI.Pages;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.*;
 import com.SAFUI.Utils.BasePage;
+import com.SAFUI.Utils.ReadingProperties;
 /**
  *This class contains all the locators and methods used for Setting page
  *
  */
 
-public class SettingPage extends BasePage{
-	// all locators on add new rule page
+public class SettingPage {
 	
-	WebDriverWait wait;
-	
-	By addnewrulebtn=By.xpath(prop.Settingprop.getProperty("addnewrulebtnlocator"));
-	By ruleName = By.id(prop.Settingprop.getProperty("rulenamelocator"));
-	By severity = By.name(prop.Settingprop.getProperty("severitylocator"));
-	
-	By addFilterBtn = By.xpath(prop.Settingprop.getProperty("addfilterbtnlocator"));
-	By attriDropbox = By.name(prop.Settingprop.getProperty("attributelocator"));
-	By comparatorDropbox = By.cssSelector(prop.Settingprop.getProperty("compdropboxlocator"));
-	By filtertriggervalue =By.name(prop.Settingprop.getProperty("ftriggervaluelocator"));
-
-	By addconditionBtn = By.xpath(prop.Settingprop.getProperty("addconditionbtnlocator"));
-	By aggreDropboxcon = By.name(prop.Settingprop.getProperty("aggredropboxconlocator"));
-	By metricDrpboxcon = By.name(prop.Settingprop.getProperty("metricDrpboxconlocator"));
-	By compDropboxcon = By.cssSelector(prop.Settingprop.getProperty("compDropboxconlocator"));
-	By condTrrigerValue = By.name(prop.Settingprop.getProperty("condTrrigerValuelocator"));
-	By condTimeWindow = By.name(prop.Settingprop.getProperty("condTimeWindowlocator"));
-	By msgTemplate = By.name(prop.Settingprop.getProperty("msgTemplatelocator"));
-	
-	By condExpression=By.name(prop.Settingprop.getProperty("condExpressionlocator"));
-	By notiRuleMsg = By.name(prop.Settingprop.getProperty("notiRuleMsglocator"));
-			
-	By okBtn = By.cssSelector(prop.Settingprop.getProperty("okBtnlocator"));
-	
-	// locators for enable, delete ,edit rule on setting page
+	// locators for enable, delete ,edit buttons on setting page
 	By enablebtn;
 	By deletebtn;
 	By editbtn;
 	WebElement ftv;
+	BasePage base;
+	ReadingProperties prop;
+	WebDriverWait wait;
+	
+	//locators for add new rule dialog
+	By addnewrulebtn, ruleName, severity,addFilterBtn, attriDropbox, comparatorDropbox, filtertriggervalue, addconditionBtn,
+	aggreDropboxcon ,metricDrpboxcon,compDropboxcon , condTrrigerValue ,condTimeWindow , msgTemplate ,
+	condExpression,notiRuleMsg , okBtn ;
 	
 	
-	public SettingPage()
-	{
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		driver.get(prop.CONFIG.getProperty("appURL"));
-		wait = new WebDriverWait(driver, 50);
+	
+	public SettingPage(){
+		prop=new ReadingProperties();
+		prop.loadProperty();		
+	}
+	
+	public SettingPage(BasePage pg){	
 		
+		base=pg;
+	}
+	
+
+	public void locatorsForSetting(){
+	// all locators on add new rule page
+		 addnewrulebtn=By.xpath(prop.Settingprop.getProperty("addnewrulebtnlocator"));
+		 ruleName = By.id(prop.Settingprop.getProperty("rulenamelocator"));
+		 severity = By.name(prop.Settingprop.getProperty("severitylocator"));
+		
+		 addFilterBtn = By.xpath(prop.Settingprop.getProperty("addfilterbtnlocator"));
+		 attriDropbox = By.name(prop.Settingprop.getProperty("attributelocator"));
+		 comparatorDropbox = By.cssSelector(prop.Settingprop.getProperty("compdropboxlocator"));
+		 filtertriggervalue =By.name(prop.Settingprop.getProperty("ftriggervaluelocator"));
+	
+		 addconditionBtn = By.xpath(prop.Settingprop.getProperty("addconditionbtnlocator"));
+		 aggreDropboxcon = By.name(prop.Settingprop.getProperty("aggredropboxconlocator"));
+		 metricDrpboxcon = By.name(prop.Settingprop.getProperty("metricDrpboxconlocator"));
+		 compDropboxcon = By.cssSelector(prop.Settingprop.getProperty("compDropboxconlocator"));
+		 condTrrigerValue = By.name(prop.Settingprop.getProperty("condTrrigerValuelocator"));
+		 condTimeWindow = By.name(prop.Settingprop.getProperty("condTimeWindowlocator"));
+		 msgTemplate = By.name(prop.Settingprop.getProperty("msgTemplatelocator"));
+		
+		 condExpression=By.name(prop.Settingprop.getProperty("condExpressionlocator"));
+		 notiRuleMsg = By.name(prop.Settingprop.getProperty("notiRuleMsglocator"));
+				
+		 okBtn = By.cssSelector(prop.Settingprop.getProperty("okBtnlocator"));
 	}
 	
 	
@@ -85,48 +96,53 @@ public class SettingPage extends BasePage{
 	
 	public void clickAddNewRuleButton()
 	{
-		click(addnewrulebtn); 
+		base.click(addnewrulebtn); 
 	}
 	
 	public void enterRuleName(String rulenm)
 	{ 
-		sendkeys(ruleName,rulenm);
+		base.sendkeys(ruleName,rulenm);
 	}
 	
 	public void enterSeverity(String serty)
 	{
-		selecttext(severity, serty);
+		base.selecttext(severity, serty);
 	}
 	
 	public void clickAddFilter()
 	{
-		click(addFilterBtn);
+		base.click(addFilterBtn);
 	}
 
 	
 	public void addNewFilter(String attri, String filtercompa,String ftriggervalue)
 	{
 		
-		selecttext(attriDropbox, attri);
-		selecttext(comparatorDropbox, filtercompa);
+		base.selecttext(attriDropbox, attri);
+		base.selecttext(comparatorDropbox, filtercompa);
 		
-		WebElement ftv=returnElement(filtertriggervalue);
-		wait.until(ExpectedConditions.presenceOfElementLocated(filtertriggervalue));
+		WebElement ftv=base.returnElement(filtertriggervalue);
+		base.waitElementToBeCliclableCondition(filtertriggervalue);
 		
 		ftv.sendKeys(Keys.TAB);
-		sendkeys(filtertriggervalue, ftriggervalue);
-	
-		wait.until(ExpectedConditions.presenceOfElementLocated(filtertriggervalue));
+		
+		base.sendkeys(filtertriggervalue, ftriggervalue);
+		base.waitElementToBeCliclableCondition(filtertriggervalue);
+		
 		
 		
 		if (ftriggervalue != "Timestamp" || ftriggervalue != "SLOT" || ftriggervalue != "PORT" || 
 			ftriggervalue != "APSLOTS" ||ftriggervalue != "BANDWIDTH" || ftriggervalue != "CLIENTCOUNT" ||ftriggervalue != "WLAN")
 		{
 				try{
-				WebElement autoOptions = driver.findElement(By.xpath("//a[contains(text(),'"+ftriggervalue+"')]"));
-				
+				WebElement autoOptions = base.driver.findElement(By.xpath("//a[contains(text(),'"+ftriggervalue+"')]"));
+				base.waitElementToBeCliclableCondition(filtertriggervalue);
 				List<WebElement> optionsToSelect = autoOptions.findElements(By.xpath("//a[contains(text(),'"+ftriggervalue+"')][1]"));
+				base.waitElementToBeCliclableCondition(filtertriggervalue);
+				
 				System.out.println("Options list: "+ optionsToSelect.containsAll(optionsToSelect));
+			
+				
 				for(WebElement option : optionsToSelect){
 			        if(option.getText().equals(ftriggervalue)) {
 			        	System.out.println("Trying to select: "+ftriggervalue);
@@ -134,7 +150,7 @@ public class SettingPage extends BasePage{
 			            break;
 			        }
 				}
-				wait.until(ExpectedConditions.presenceOfElementLocated(filtertriggervalue));
+				base.waitElementToBeCliclableCondition(filtertriggervalue);
 				
 				}catch (NoSuchElementException e) {
 					System.out.println(e.getStackTrace());
@@ -148,35 +164,35 @@ public class SettingPage extends BasePage{
 	
 	public void clickAddNewCondition()
 	{
-		click(addconditionBtn);
+		base.click(addconditionBtn);
 	}
 	
 	public void addNewCondition(String aggregation,String metric,String conditioncompa,String conditiontriggervalue,
 			String timewindow,String msgtemplate)
 	{
-		selecttext(aggreDropboxcon, aggregation);
-		selecttext(metricDrpboxcon, metric);
-		selecttext(compDropboxcon, conditioncompa);
+		base.selecttext(aggreDropboxcon, aggregation);
+		base.selecttext(metricDrpboxcon, metric);
+		base.selecttext(compDropboxcon, conditioncompa);
 
-		sendkeys(condTrrigerValue,conditiontriggervalue);
-		sendkeys(condTimeWindow,timewindow);
-		sendkeys(msgTemplate,msgtemplate);
+		base.sendkeys(condTrrigerValue,conditiontriggervalue);
+		base.sendkeys(condTimeWindow,timewindow);
+		base.sendkeys(msgTemplate,msgtemplate);
 	}
  
 	public void enterconditionExpression(String conditionexpr)
 	{
-		sendkeys(condExpression,conditionexpr);
+		base.sendkeys(condExpression,conditionexpr);
 	}
 	
 	public void enterNotificationRuleMsg(String notifyrule)
 	{
-		sendkeys(notiRuleMsg,notifyrule);
+		base.sendkeys(notiRuleMsg,notifyrule);
 	}
 	
 	public void clickOKBtn()
 	{
-		click(okBtn);
-		wait.until(ExpectedConditions.presenceOfElementLocated(addnewrulebtn));
+		base.click(okBtn);
+		base.waitElementToBeCliclableCondition(addnewrulebtn);
 	}
 	
 	public String verifyText(String text)
@@ -184,7 +200,7 @@ public class SettingPage extends BasePage{
 	//	xpath  //h3[contains(text()='"+text+"')]
 		
 		By element= By.xpath("//*[contains(text(),'"+text+"')]");
-		String verifystr=verifyRuleNameText(element);
+		String verifystr=base.verifyRuleNameText(element);
 		return verifystr;		
 	}
 	
@@ -193,7 +209,7 @@ public class SettingPage extends BasePage{
 	//	xpath  //h3[contains(text()='"+text+"')]
 		boolean value;
 		By element= By.xpath("//*[contains(text(),'"+text+"')]");
-		String verifystr=verifyRuleNameText(element);
+		String verifystr=base.verifyRuleNameText(element);
 		
 		if(verifystr != null)
 			value=true;
@@ -208,7 +224,7 @@ public class SettingPage extends BasePage{
 		try{
 			deletebtn = By.xpath("//h3[text()='"+rulenm+"']/parent::div/following::div[1]/div/button[text()='Delete']");
 			if(deletebtn.toString()!=null){
-				click(deletebtn);
+				base.click(deletebtn);
 			}else
 				System.out.println("Rule not found !!!  "+rulenm);
 				
@@ -226,21 +242,21 @@ public class SettingPage extends BasePage{
 		try{
 			editbtn=By.xpath(".//h3[text()='"+rulenm+"']/parent::div/following::div[1]/div/button[1]");
 			if(editbtn.toString()!=null){
-				click(editbtn);
-				clearText(ruleName);
+				base.click(editbtn);
+				base.clearText(ruleName);
 				
-				ftv =returnElement(filtertriggervalue);
+				ftv =base.returnElement(filtertriggervalue);
 				
 				ftv.sendKeys(Keys.chord(Keys.CONTROL)+"a");
 				ftv.sendKeys(Keys.BACK_SPACE);
 				ftv.sendKeys(Keys.TAB);
 				
-				clearText(filtertriggervalue);
-				clearText(condTrrigerValue);
-				clearText(condTimeWindow);
-				clearText(msgTemplate);
-				clearText(condExpression);
-				clearText(notiRuleMsg);
+				base.clearText(filtertriggervalue);
+				base.clearText(condTrrigerValue);
+				base.clearText(condTimeWindow);
+				base.clearText(msgTemplate);
+				base.clearText(condExpression);
+				base.clearText(notiRuleMsg);
 				
 			}else
 				System.out.println("Rule not found !!!!"+rulenm);

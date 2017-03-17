@@ -2,15 +2,16 @@ package com.SAFUI.Testscripts;
 
 import org.testng.annotations.*;
 import com.SAFUI.Pages.SettingPage;
+import com.SAFUI.Utils.TestTemplate;
 
-public class EnableRuleTestScript {
+public class EnableRuleTestScript extends  TestTemplate{
 	
-	SettingPage setpage;
+	
 
 	@BeforeClass
 	public void before()
 	{
-		setpage = new SettingPage();
+		
 		
 	}
 
@@ -18,7 +19,7 @@ public class EnableRuleTestScript {
 	public void closeBrowser()
 	{
 		System.out.println("in After class ");
-		setpage.closeAllDrivers();
+		base.closeAllDrivers();
 	}
 	
 	@Test

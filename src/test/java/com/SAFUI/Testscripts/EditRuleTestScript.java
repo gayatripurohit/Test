@@ -3,22 +3,23 @@ package com.SAFUI.Testscripts;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import com.SAFUI.Pages.SettingPage;
-import com.SAFUI.Utils.ReadExcelFile;
+import com.SAFUI.Utils.*;
 
-public class EditRuleTestScript {
+
+public class EditRuleTestScript extends  TestTemplate{
 	
-	SettingPage setpage;
+	
 
 	@BeforeClass
 	public void before(){
-		setpage = new SettingPage();	
+		
 	}
 
 	@AfterClass
 	public void closeBrowser()
 	{
 		System.out.println("in After class ");
-		setpage.closeAllDrivers();
+		base.closeAllDrivers();
 	}
 	
 	@Test(priority=1,dataProvider="Editruletestdata",dataProviderClass=ReadExcelFile.class)
@@ -27,8 +28,9 @@ public class EditRuleTestScript {
 									String timewindow,String msgtemplate, String conditionexpr,String notifyrule ){
 		String verifytext;
 		
-		
+		menu.goToSettingPage();
 		verifytext = setpage.verifyText(rulenm);
+		
 		if(verifytext!=null && verifytext.equals(rulenm)){
 				setpage.clickEditRuleBtn(rulenm);
 						
