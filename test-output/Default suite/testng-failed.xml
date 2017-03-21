@@ -3,13 +3,15 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="com.SAFUI.Testscripts.LoginTestScript">
+      <class name="com.SAFUI.Testscripts.AddNewRuleTestScript">
         <methods>
-          <include name="LoginPage" invocation-numbers="0 1 2 3 4 5 6"/>
+          <include name="LoginPage" invocation-numbers="0 1 2 3 4 5"/>
+          <include name="AddNewRuleBtn" invocation-numbers="0 1 2 3 4"/>
           <include name="before"/>
-          <include name="after"/>
+          <include name="BaseTest"/>
+          <include name="closeBrowser"/>
         </methods>
-      </class> <!-- com.SAFUI.Testscripts.LoginTestScript -->
+      </class> <!-- com.SAFUI.Testscripts.AddNewRuleTestScript -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -29,15 +29,11 @@ public class SettingPage {
 	aggreDropboxcon ,metricDrpboxcon,compDropboxcon , condTrrigerValue ,condTimeWindow , msgTemplate ,
 	condExpression,notiRuleMsg , okBtn ;
 	
-	
-	
-	public SettingPage(){
-		prop=new ReadingProperties();
-		prop.loadProperty();		
-	}
+
 	
 	public SettingPage(BasePage pg){	
-		
+		prop=new ReadingProperties();
+		prop.loadProperty();
 		base=pg;
 	}
 	
@@ -122,13 +118,10 @@ public class SettingPage {
 		base.selecttext(comparatorDropbox, filtercompa);
 		
 		WebElement ftv=base.returnElement(filtertriggervalue);
-		base.waitElementToBeCliclableCondition(filtertriggervalue);
+		base.waitElementToBeClickableCondition(filtertriggervalue);
 		
-		ftv.sendKeys(Keys.TAB);
-		
-		base.sendkeys(filtertriggervalue, ftriggervalue);
-		base.waitElementToBeCliclableCondition(filtertriggervalue);
-		
+		ftv.sendKeys(Keys.TAB);	
+		base.waitElementToBeClickableCondition(filtertriggervalue);
 		
 		
 		if (ftriggervalue != "Timestamp" || ftriggervalue != "SLOT" || ftriggervalue != "PORT" || 
@@ -136,9 +129,9 @@ public class SettingPage {
 		{
 				try{
 				WebElement autoOptions = base.driver.findElement(By.xpath("//a[contains(text(),'"+ftriggervalue+"')]"));
-				base.waitElementToBeCliclableCondition(filtertriggervalue);
+				base.waitElementToBeClickableCondition(filtertriggervalue);
 				List<WebElement> optionsToSelect = autoOptions.findElements(By.xpath("//a[contains(text(),'"+ftriggervalue+"')][1]"));
-				base.waitElementToBeCliclableCondition(filtertriggervalue);
+				base.waitElementToBeClickableCondition(filtertriggervalue);
 				
 				System.out.println("Options list: "+ optionsToSelect.containsAll(optionsToSelect));
 			
@@ -150,7 +143,7 @@ public class SettingPage {
 			            break;
 			        }
 				}
-				base.waitElementToBeCliclableCondition(filtertriggervalue);
+				base.waitElementToBeClickableCondition(filtertriggervalue);
 				
 				}catch (NoSuchElementException e) {
 					System.out.println(e.getStackTrace());
@@ -158,7 +151,11 @@ public class SettingPage {
 				catch (Exception e) {
 					System.out.println(e.getStackTrace());
 				}
+		}else
+		{
+			base.sendkeys(filtertriggervalue, ftriggervalue);
 		}
+		
 	}
 	
 	
@@ -192,7 +189,7 @@ public class SettingPage {
 	public void clickOKBtn()
 	{
 		base.click(okBtn);
-		base.waitElementToBeCliclableCondition(addnewrulebtn);
+		base.waitElementToBeClickableCondition(addnewrulebtn);
 	}
 	
 	public String verifyText(String text)
@@ -200,7 +197,7 @@ public class SettingPage {
 	//	xpath  //h3[contains(text()='"+text+"')]
 		
 		By element= By.xpath("//*[contains(text(),'"+text+"')]");
-		String verifystr=base.verifyRuleNameText(element);
+		String verifystr=base.verifyText(element);
 		return verifystr;		
 	}
 	
@@ -209,7 +206,7 @@ public class SettingPage {
 	//	xpath  //h3[contains(text()='"+text+"')]
 		boolean value;
 		By element= By.xpath("//*[contains(text(),'"+text+"')]");
-		String verifystr=base.verifyRuleNameText(element);
+		String verifystr=base.verifyText(element);
 		
 		if(verifystr != null)
 			value=true;

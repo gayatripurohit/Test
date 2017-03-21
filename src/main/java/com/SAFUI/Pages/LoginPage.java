@@ -1,8 +1,7 @@
 package com.SAFUI.Pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.WebElement;
 import com.SAFUI.Utils.BasePage;
 import com.SAFUI.Utils.ReadingProperties;
 
@@ -11,11 +10,12 @@ public class LoginPage {
 
 	BasePage base;
 	ReadingProperties prop;
-	
+	boolean text;
 	
 	By usernm ;
 	By password;	
 	By loginbtn;
+	By appnm;
 	
 	public LoginPage(BasePage pg){
 			prop= new ReadingProperties();
@@ -29,6 +29,14 @@ public class LoginPage {
 		 usernm = By.name(prop.Loginprop.getProperty("username"));
 		 password = By.name(prop.Loginprop.getProperty("pwd"));	
 		 loginbtn=By.id(prop.Loginprop.getProperty("loginbtn"));
+	}
+	
+	public boolean isElementPresent(){
+		appnm= By.xpath(prop.Loginprop.getProperty("appnm"));
+		
+		text=base.verifyLogin(appnm);
+		
+		return text;
 	}
 	
 	public void enterLogindetails(String unm,String pwd)

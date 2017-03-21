@@ -1,5 +1,7 @@
 package com.SAFUI.Utils;
 
+import org.testng.annotations.BeforeClass;
+
 import com.SAFUI.Pages.*;
 
 public class TestTemplate {
@@ -11,6 +13,8 @@ public class TestTemplate {
 	protected TopMenu menu;
 	protected BasePage base;
 	
+	
+	@BeforeClass
 	public void BaseTest(){
 		
 		prop=new ReadingProperties();

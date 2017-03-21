@@ -22,7 +22,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.SAFUI.Pages.TopMenu;
 
-public class BasePage extends By {
+public class BasePage {
 	
 	public WebDriver driver;
 	protected WebDriverWait wait;
@@ -33,6 +33,8 @@ public class BasePage extends By {
 	public XSSFWorkbook workbook;
 	public XSSFSheet sheet;
 	BasePage base;
+	String text;
+	
 	
 	public BasePage()
 	{
@@ -71,7 +73,7 @@ public class BasePage extends By {
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.get(appurl);
-		wait = new WebDriverWait(driver, 50);
+		wait = new WebDriverWait(driver, 1000);
 	}
 	
 	public void waitPresenceOfElementCondition(By by){
@@ -79,7 +81,7 @@ public class BasePage extends By {
 		wait.until(ExpectedConditions.presenceOfElementLocated(by));	
 	}
 	
-	public void waitElementToBeCliclableCondition(By by){
+	public void waitElementToBeClickableCondition(By by){
 		
 		wait.until(ExpectedConditions.elementToBeClickable(by));	
 	}
@@ -110,9 +112,9 @@ public class BasePage extends By {
 		comDropbox.selectByVisibleText(str);	
 	}
 	
-	public String verifyRuleNameText(By by)
-	{
-		return driver.findElement(by).getText();	
+	public String verifyText(By by)
+	{		
+		return	driver.findElement(by).getText();	 
 	}
 	
 	public void clearText(By by){
@@ -124,13 +126,16 @@ public class BasePage extends By {
 		
 	}
 
-	@Override
-	public List<WebElement> findElements(SearchContext context) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean verifyLogin(By by){
+		try{
+		driver.findElement(by);
+		return true;
+		}catch(NoSuchElementException e){
+			e.getMessage();
+		return false ;
+		}
 	}
-	
-	public void locator (){
 		
-	}
+	
+
 }

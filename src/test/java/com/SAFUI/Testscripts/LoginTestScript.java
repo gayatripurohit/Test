@@ -11,25 +11,26 @@ import com.SAFUI.Utils.TestTemplate;
 
 public class LoginTestScript extends  TestTemplate{
 	
-	
-	@BeforeSuite
-	public void before()
-	{
-		BaseTest();
-	}
+	String text;
 	
 	@AfterClass
 	public void after(){
-		
+		System.out.println("in After class ");
+		base.closeAllDrivers();
 	}
+
 	
 	@Test(dataProvider="logindata",dataProviderClass=ReadExcelFile.class)
 	public void LoginPage(String usernm, String password)
 	{
 		login.locatorsForLogin();
 		login.enterLogindetails(usernm,password);
-		//Assert.assertEquals();
 		
+		
+		Assert.assertTrue(login.isElementPresent());		
 	}
+	
+	
+	
 	
 }
