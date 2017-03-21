@@ -23,28 +23,28 @@ public class TopMenu{
 	}
 	
 	public void goToSettingPage(){
-		 settingpgbtn = By.linkText(prop.Homeprop.getProperty("settingpglocator"));
+		 settingpgbtn = prop.getObjectLocator(prop.Homeprop.getProperty("settingpglocator"));
 		 base.click(settingpgbtn);		
 	}
 	
 	public void goToSearchPage(){
-		searchpgbtn = By.linkText(prop.Homeprop.getProperty("searchpglocator"));
+		searchpgbtn = prop.getObjectLocator(prop.Homeprop.getProperty("searchpglocator"));
 		base.click(searchpgbtn);
 	}
 	
 	public void goToDashboardPage(){
-		dashboardpgbtn = By.linkText(prop.Homeprop.getProperty("dashboardpglocator"));
+		dashboardpgbtn = prop.getObjectLocator(prop.Homeprop.getProperty("dashboardpglocator"));
 		base.click(dashboardpgbtn);
 	}
 
 	public void goToUsersPage(){
-		 userspgbtn = By.linkText(prop.Homeprop.getProperty("userspglocator"));
+		 userspgbtn = prop.getObjectLocator(prop.Homeprop.getProperty("userspglocator"));
 		 base.click(userspgbtn);
 	}
 	
 	public void logoutBtn(){
-		 acctbtn = By.xpath(prop.Homeprop.getProperty("accountlocator"));
-		 logoutbtn= By.xpath(prop.Homeprop.getProperty("logoutlocator"));
+		 acctbtn = prop.getObjectLocator(prop.Homeprop.getProperty("accountlocator"));
+		 logoutbtn= prop.getObjectLocator(prop.Homeprop.getProperty("logoutlocator"));
 		
 		 base.click(acctbtn);		
 		 wait.until(ExpectedConditions.elementToBeClickable(logoutbtn));

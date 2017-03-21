@@ -3,12 +3,19 @@ package com.SAFUI.Utils;
 import java.io.FileInputStream;
 import java.util.Properties;
 
+import org.openqa.selenium.By;
+
 public class ReadingProperties {
 		
 	public Properties CONFIG=null;
 	public Properties Settingprop=null;
 	public Properties Loginprop=null;
 	public Properties Homeprop = null;
+		
+	String locatorProperty;
+	String locatorType;
+	String locatorValue;
+	By locator;
 	
 	public void loadProperty()
 	{
@@ -39,4 +46,38 @@ public class ReadingProperties {
 	
 	}
 	
+	public By getObjectLocator(String locatorProperty)
+	{
+		 //locatorProperty = propertyFile.getProperty(locatorName);
+		 System.out.println(locatorProperty.toString());
+		 locatorType = locatorProperty.split(":")[0];
+		 locatorValue = locatorProperty.split(":")[1];
+
+		 locator = null;
+		switch(locatorType)
+		{
+		case "Id":
+			locator = By.id(locatorValue);
+			break;
+		case "Name":
+			locator = By.name(locatorValue);
+			break;
+		case "CssSelector":
+			locator = By.cssSelector(locatorValue);
+			break;
+		case "Xpath":
+			locator = By.xpath(locatorValue);
+			break;
+		case "LinkText":
+			locator = By.linkText(locatorValue);
+			break;
+		case "PartialLinkText":
+			locator = By.partialLinkText(locatorValue);
+			break;
+		case "TagName":
+			locator = By.tagName(locatorValue);
+			break;		
+		}
+		return locator;
+	}	
 }

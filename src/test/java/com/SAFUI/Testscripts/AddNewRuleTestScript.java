@@ -26,12 +26,11 @@ public class AddNewRuleTestScript extends  TestTemplate{
 		base.closeAllDrivers();
 	}
 	
-	@Test(priority=1,dataProvider="logindata",dataProviderClass=ReadExcelFile.class)
-	public void LoginPage(String usernm, String password)
+	@Test(priority=1)
+	public void LoginPage()
 	{
-		login.locatorsForLogin();
-		login.enterLogindetails(usernm,password);
-		Assert.assertTrue(login.isElementPresent());		
+		login.validLogin();	
+		menu.goToSettingPage();
 	}
 	
 	@Test(priority=2,dataProvider="Addnewruletestdata",dataProviderClass=ReadExcelFile.class)
@@ -42,9 +41,7 @@ public class AddNewRuleTestScript extends  TestTemplate{
 		
 		System.out.println("in AddNewRuleBtn()");
 
-		menu.goToSettingPage();
 		
-		setpage.locatorsForSetting();
 		
 		setpage.clickAddNewRuleButton();
 		setpage.enterRuleName(rulenm);

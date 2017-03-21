@@ -21,24 +21,27 @@ public class LoginPage {
 			prop= new ReadingProperties();
 			prop.loadProperty();
 			base=pg;
+			locatorsForLogin();
 	}
-	
-	
-	
+
 	public void locatorsForLogin(){
-		 usernm = By.name(prop.Loginprop.getProperty("username"));
-		 password = By.name(prop.Loginprop.getProperty("pwd"));	
-		 loginbtn=By.id(prop.Loginprop.getProperty("loginbtn"));
+		 usernm =	prop.getObjectLocator(prop.Loginprop.getProperty("username"));
+		 password = prop.getObjectLocator(prop.Loginprop.getProperty("password"));	
+		 loginbtn = prop.getObjectLocator(prop.Loginprop.getProperty("loginbtn"));
 	}
 	
-	public boolean isElementPresent(){
-		appnm= By.xpath(prop.Loginprop.getProperty("appnm"));
+	
+	public void validLogin(){
+		base.sendkeys(usernm,prop.Loginprop.getProperty("unm"));
+		base.sendkeys(password,prop.Loginprop.getProperty("pwd"));
 		
-		text=base.verifyLogin(appnm);
+		base.waitPresenceOfElementCondition(loginbtn);
 		
-		return text;
+		base.click(loginbtn);
+		
 	}
 	
+	//test case method
 	public void enterLogindetails(String unm,String pwd)
 	{
 		
@@ -51,6 +54,12 @@ public class LoginPage {
 		base.waitPresenceOfElementCondition(loginbtn);
 		
 		base.click(loginbtn);
-		base.waitPresenceOfElementCondition(loginbtn);
 	}
+	
+	public boolean isElementPresent(){
+		appnm= prop.getObjectLocator(prop.Loginprop.getProperty("appnm"));		
+		text=base.verifyLogin(appnm);		
+		return text;
+	}
+	
 }

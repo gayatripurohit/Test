@@ -5,7 +5,6 @@
     <classes>
       <class name="com.SAFUI.Testscripts.AddNewRuleTestScript">
         <methods>
-          <include name="LoginPage" invocation-numbers="0 1 2 3 4 5"/>
           <include name="AddNewRuleBtn" invocation-numbers="0 1 2 3 4"/>
           <include name="before"/>
           <include name="BaseTest"/>

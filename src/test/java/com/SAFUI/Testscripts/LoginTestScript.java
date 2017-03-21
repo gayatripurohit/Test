@@ -23,10 +23,7 @@ public class LoginTestScript extends  TestTemplate{
 	@Test(dataProvider="logindata",dataProviderClass=ReadExcelFile.class)
 	public void LoginPage(String usernm, String password)
 	{
-		login.locatorsForLogin();
 		login.enterLogindetails(usernm,password);
-		
-		
 		Assert.assertTrue(login.isElementPresent());		
 	}
 	

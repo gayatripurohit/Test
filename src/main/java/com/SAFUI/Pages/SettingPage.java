@@ -15,52 +15,48 @@ import com.SAFUI.Utils.ReadingProperties;
 
 public class SettingPage {
 	
-	// locators for enable, delete ,edit buttons on setting page
-	By enablebtn;
-	By deletebtn;
-	By editbtn;
+	
 	WebElement ftv;
 	BasePage base;
 	ReadingProperties prop;
 	WebDriverWait wait;
 	
-	//locators for add new rule dialog
+	//locators for add new rule dialog  & enable, delete ,edit buttons on setting page
 	By addnewrulebtn, ruleName, severity,addFilterBtn, attriDropbox, comparatorDropbox, filtertriggervalue, addconditionBtn,
 	aggreDropboxcon ,metricDrpboxcon,compDropboxcon , condTrrigerValue ,condTimeWindow , msgTemplate ,
-	condExpression,notiRuleMsg , okBtn ;
-	
-
+	condExpression,notiRuleMsg , okBtn, enablebtn ,deletebtn, editbtn;
 	
 	public SettingPage(BasePage pg){	
 		prop=new ReadingProperties();
 		prop.loadProperty();
 		base=pg;
+		locatorsForSetting();
 	}
 	
 
 	public void locatorsForSetting(){
 	// all locators on add new rule page
-		 addnewrulebtn=By.xpath(prop.Settingprop.getProperty("addnewrulebtnlocator"));
-		 ruleName = By.id(prop.Settingprop.getProperty("rulenamelocator"));
-		 severity = By.name(prop.Settingprop.getProperty("severitylocator"));
+		 addnewrulebtn=prop.getObjectLocator(prop.Settingprop.getProperty("addnewrulebtnlocator"));
+		 ruleName = prop.getObjectLocator(prop.Settingprop.getProperty("rulenamelocator"));
+		 severity = prop.getObjectLocator(prop.Settingprop.getProperty("severitylocator"));
 		
-		 addFilterBtn = By.xpath(prop.Settingprop.getProperty("addfilterbtnlocator"));
-		 attriDropbox = By.name(prop.Settingprop.getProperty("attributelocator"));
-		 comparatorDropbox = By.cssSelector(prop.Settingprop.getProperty("compdropboxlocator"));
-		 filtertriggervalue =By.name(prop.Settingprop.getProperty("ftriggervaluelocator"));
+		 addFilterBtn = prop.getObjectLocator(prop.Settingprop.getProperty("addfilterbtnlocator"));
+		 attriDropbox = prop.getObjectLocator(prop.Settingprop.getProperty("attributelocator"));
+		 comparatorDropbox = prop.getObjectLocator(prop.Settingprop.getProperty("compdropboxlocator"));
+		 filtertriggervalue = prop.getObjectLocator(prop.Settingprop.getProperty("ftriggervaluelocator"));
 	
-		 addconditionBtn = By.xpath(prop.Settingprop.getProperty("addconditionbtnlocator"));
-		 aggreDropboxcon = By.name(prop.Settingprop.getProperty("aggredropboxconlocator"));
-		 metricDrpboxcon = By.name(prop.Settingprop.getProperty("metricDrpboxconlocator"));
-		 compDropboxcon = By.cssSelector(prop.Settingprop.getProperty("compDropboxconlocator"));
-		 condTrrigerValue = By.name(prop.Settingprop.getProperty("condTrrigerValuelocator"));
-		 condTimeWindow = By.name(prop.Settingprop.getProperty("condTimeWindowlocator"));
-		 msgTemplate = By.name(prop.Settingprop.getProperty("msgTemplatelocator"));
+		 addconditionBtn = prop.getObjectLocator(prop.Settingprop.getProperty("addconditionbtnlocator"));
+		 aggreDropboxcon = prop.getObjectLocator(prop.Settingprop.getProperty("aggredropboxconlocator"));
+		 metricDrpboxcon = prop.getObjectLocator(prop.Settingprop.getProperty("metricDrpboxconlocator"));
+		 compDropboxcon = prop.getObjectLocator(prop.Settingprop.getProperty("compDropboxconlocator"));
+		 condTrrigerValue = prop.getObjectLocator(prop.Settingprop.getProperty("condTrrigerValuelocator"));
+		 condTimeWindow = prop.getObjectLocator(prop.Settingprop.getProperty("condTimeWindowlocator"));
+		 msgTemplate = prop.getObjectLocator(prop.Settingprop.getProperty("msgTemplatelocator"));
 		
-		 condExpression=By.name(prop.Settingprop.getProperty("condExpressionlocator"));
-		 notiRuleMsg = By.name(prop.Settingprop.getProperty("notiRuleMsglocator"));
+		 condExpression = prop.getObjectLocator(prop.Settingprop.getProperty("condExpressionlocator"));
+		 notiRuleMsg = prop.getObjectLocator(prop.Settingprop.getProperty("notiRuleMsglocator"));
 				
-		 okBtn = By.cssSelector(prop.Settingprop.getProperty("okBtnlocator"));
+		 okBtn = prop.getObjectLocator(prop.Settingprop.getProperty("okBtnlocator"));
 	}
 	
 	
@@ -120,41 +116,42 @@ public class SettingPage {
 		WebElement ftv=base.returnElement(filtertriggervalue);
 		base.waitElementToBeClickableCondition(filtertriggervalue);
 		
-		ftv.sendKeys(Keys.TAB);	
+		
+		ftv.sendKeys(ftriggervalue);	
 		base.waitElementToBeClickableCondition(filtertriggervalue);
 		
 		
-		if (ftriggervalue != "Timestamp" || ftriggervalue != "SLOT" || ftriggervalue != "PORT" || 
-			ftriggervalue != "APSLOTS" ||ftriggervalue != "BANDWIDTH" || ftriggervalue != "CLIENTCOUNT" ||ftriggervalue != "WLAN")
-		{
-				try{
-				WebElement autoOptions = base.driver.findElement(By.xpath("//a[contains(text(),'"+ftriggervalue+"')]"));
-				base.waitElementToBeClickableCondition(filtertriggervalue);
-				List<WebElement> optionsToSelect = autoOptions.findElements(By.xpath("//a[contains(text(),'"+ftriggervalue+"')][1]"));
-				base.waitElementToBeClickableCondition(filtertriggervalue);
-				
-				System.out.println("Options list: "+ optionsToSelect.containsAll(optionsToSelect));
-			
-				
-				for(WebElement option : optionsToSelect){
-			        if(option.getText().equals(ftriggervalue)) {
-			        	System.out.println("Trying to select: "+ftriggervalue);
-			            option.click();
-			            break;
-			        }
-				}
-				base.waitElementToBeClickableCondition(filtertriggervalue);
-				
-				}catch (NoSuchElementException e) {
-					System.out.println(e.getStackTrace());
-				}
-				catch (Exception e) {
-					System.out.println(e.getStackTrace());
-				}
-		}else
-		{
-			base.sendkeys(filtertriggervalue, ftriggervalue);
-		}
+//		if (ftriggervalue != "Timestamp" || ftriggervalue != "SLOT" || ftriggervalue != "PORT" || 
+//			ftriggervalue != "APSLOTS" ||ftriggervalue != "BANDWIDTH" || ftriggervalue != "CLIENTCOUNT" ||ftriggervalue != "WLAN")
+//		{
+//				try{
+//				WebElement autoOptions = base.driver.findElement(By.xpath("//a[contains(text(),'"+ftriggervalue+"')]"));
+//				base.waitElementToBeClickableCondition(filtertriggervalue);
+//				List<WebElement> optionsToSelect = autoOptions.findElements(By.xpath("//a[contains(text(),'"+ftriggervalue+"')][1]"));
+//				base.waitElementToBeClickableCondition(filtertriggervalue);
+//				
+//				System.out.println("Options list: "+ optionsToSelect.containsAll(optionsToSelect));
+//			
+//				
+//				for(WebElement option : optionsToSelect){
+//			        if(option.getText().equals(ftriggervalue)) {
+//			        	System.out.println("Trying to select: "+ftriggervalue);
+//			            option.click();
+//			            break;
+//			        }
+//				}
+//				base.waitElementToBeClickableCondition(filtertriggervalue);
+//				
+//				}catch (NoSuchElementException e) {
+//					System.out.println(e.getStackTrace());
+//				}
+//				catch (Exception e) {
+//					System.out.println(e.getStackTrace());
+//				}
+//		}else
+//		{
+//			base.sendkeys(filtertriggervalue, ftriggervalue);
+//		}
 		
 	}
 	
