@@ -1,7 +1,6 @@
 package com.SAFUI.Testscripts;
 import org.testng.Assert;
 import  org.testng.annotations.*;
-import  com.SAFUI.Pages.SettingPage;
 import com.SAFUI.Utils.*;
 
 /**

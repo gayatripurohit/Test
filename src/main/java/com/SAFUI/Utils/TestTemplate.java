@@ -21,7 +21,7 @@ public class TestTemplate {
 		prop.loadProperty();
 
 		base=new BasePage();
-		base.launchBrowser(prop.Loginprop.getProperty("appURL"));
+		base.launchBrowser(prop.CONFIG.getProperty("appURL"));
 		
 		login = new LoginPage(base);
 		setpage =new SettingPage(base);

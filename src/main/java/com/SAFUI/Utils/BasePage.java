@@ -2,25 +2,19 @@ package com.SAFUI.Utils;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.JavascriptExecutor;
 
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.openqa.selenium.By;
-import org.openqa.selenium.SearchContext;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.*;
+import org.apache.poi.xssf.usermodel.*;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.interactions.Actions;
 
-import com.SAFUI.Pages.TopMenu;
+
 
 public class BasePage {
 	
@@ -76,20 +70,8 @@ public class BasePage {
 		wait = new WebDriverWait(driver, 1000);
 	}
 	
-	public void waitPresenceOfElementCondition(By by){
-		
-		wait.until(ExpectedConditions.presenceOfElementLocated(by));	
-	}
-	
-	public void waitElementToBeClickableCondition(By by){
-		
-		wait.until(ExpectedConditions.elementToBeClickable(by));	
-	}
-	
-	
-	
 	public void closeAllDrivers(){
-		driver.quit();
+		driver.quit(); 
 	}
 	
 	public WebElement returnElement(By by)
@@ -98,7 +80,28 @@ public class BasePage {
 	}
 	
 	public void click(By by){
+		try{
 		driver.findElement(by).click();
+		}catch(NoSuchElementException e){
+			e.getMessage();
+		}
+	}
+	
+	public void submit(By by){
+		try{
+		driver.findElement(by).click();
+		}catch(NoSuchElementException e){
+			e.getMessage();
+		}
+	}
+	
+	public void scrollPageDown(){
+		((JavascriptExecutor)driver).executeScript("scroll(0,600)");
+	}
+	
+	public void setFocusonWindow(By by){
+		Actions act = new Actions (driver);
+		act.moveToElement(returnElement(by)).click().perform();
 	}
 	
 	public void sendkeys(By by,String str)
@@ -108,8 +111,12 @@ public class BasePage {
 	
 	public void selecttext(By by,String str)
 	{
-		Select comDropbox= new Select(driver.findElement(by));
-		comDropbox.selectByVisibleText(str);	
+		try{
+			Select comDropbox= new Select(driver.findElement(by));
+			comDropbox.selectByVisibleText(str);
+			}catch(NoSuchElementException e){
+				e.getMessage();
+			}	
 	}
 	
 	public String verifyText(By by)
@@ -121,21 +128,30 @@ public class BasePage {
 		try{
 		driver.findElement(by).clear();
 		}catch(NoSuchElementException e) {
-			e.printStackTrace();
+			e.getMessage();
 		}
 		
 	}
 
 	public boolean verifyLogin(By by){
-		try{
+	try{
 		driver.findElement(by);
 		return true;
 		}catch(NoSuchElementException e){
 			e.getMessage();
-		return false ;
+			return false ;
 		}
 	}
 		
+	public void waitPresenceOfElementCondition(By by){
+		
+		wait.until(ExpectedConditions.presenceOfElementLocated(by));	
+	}
+	
+	public void waitElementToBeClickableCondition(By by){
+		
+		wait.until(ExpectedConditions.elementToBeClickable(by));	
+	}
 	
 
 }

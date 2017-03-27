@@ -26,7 +26,7 @@ public class ReadingProperties {
 		
 		try
 		{
-			FileInputStream objfile = new FileInputStream(System.getProperty("user.dir")+"\\src\\main\\resources\\ObjectRepository\\browser.properties");
+			FileInputStream objfile = new FileInputStream(System.getProperty("user.dir")+"\\src\\main\\resources\\ObjectRepository\\config.properties");
 			CONFIG.load(objfile);
 			
 			FileInputStream settingfile = new FileInputStream(System.getProperty("user.dir")+"\\src\\main\\resources\\ObjectRepository\\Setting.properties");
@@ -48,8 +48,7 @@ public class ReadingProperties {
 	
 	public By getObjectLocator(String locatorProperty)
 	{
-		 //locatorProperty = propertyFile.getProperty(locatorName);
-		 System.out.println(locatorProperty.toString());
+		
 		 locatorType = locatorProperty.split(":")[0];
 		 locatorValue = locatorProperty.split(":")[1];
 

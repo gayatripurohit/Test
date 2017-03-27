@@ -1,7 +1,6 @@
 package com.SAFUI.Testscripts;
 
 import org.testng.annotations.*;
-import com.SAFUI.Pages.SettingPage;
 import com.SAFUI.Utils.TestTemplate;
 
 public class EnableRuleTestScript extends  TestTemplate{

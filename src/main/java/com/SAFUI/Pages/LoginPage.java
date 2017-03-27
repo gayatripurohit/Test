@@ -1,7 +1,7 @@
 package com.SAFUI.Pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+
 import com.SAFUI.Utils.BasePage;
 import com.SAFUI.Utils.ReadingProperties;
 
@@ -12,10 +12,7 @@ public class LoginPage {
 	ReadingProperties prop;
 	boolean text;
 	
-	By usernm ;
-	By password;	
-	By loginbtn;
-	By appnm;
+	By usernm ,password,loginbtn,appnm,acctbtn ,logoutbtn;
 	
 	public LoginPage(BasePage pg){
 			prop= new ReadingProperties();
@@ -30,21 +27,32 @@ public class LoginPage {
 		 loginbtn = prop.getObjectLocator(prop.Loginprop.getProperty("loginbtn"));
 	}
 	
-	
+	// method used for Login to Add new rule 
 	public void validLogin(){
-		base.sendkeys(usernm,prop.Loginprop.getProperty("unm"));
-		base.sendkeys(password,prop.Loginprop.getProperty("pwd"));
+		base.sendkeys(usernm,prop.CONFIG.getProperty("unm"));
+		base.sendkeys(password,prop.CONFIG.getProperty("pwd"));
 		
 		base.waitPresenceOfElementCondition(loginbtn);
 		
-		base.click(loginbtn);
-		
+		base.click(loginbtn);		
 	}
 	
-	//test case method
+	
+	public void logoutBtn(){
+		 acctbtn = prop.getObjectLocator(prop.Homeprop.getProperty("accountlocator"));
+		 logoutbtn= prop.getObjectLocator(prop.Homeprop.getProperty("logoutlocator"));
+		
+		 base.click(acctbtn);		
+		 base.waitElementToBeClickableCondition(logoutbtn);
+		
+		 base.click(logoutbtn);
+		 
+	}
+	
+	
+	//test case method for Login 
 	public void enterLogindetails(String unm,String pwd)
 	{
-		
 		base.clearText(usernm);
 		base.clearText(password);
 		
@@ -56,9 +64,15 @@ public class LoginPage {
 		base.click(loginbtn);
 	}
 	
-	public boolean isElementPresent(){
-		appnm= prop.getObjectLocator(prop.Loginprop.getProperty("appnm"));		
-		text=base.verifyLogin(appnm);		
+	public boolean isElementPresent(String result){
+		if (result.equalsIgnoreCase("true")){	
+			appnm= prop.getObjectLocator(prop.Loginprop.getProperty("appnm"));		
+			text=base.verifyLogin(appnm);
+		}
+		else if(result.equalsIgnoreCase("false")) {
+			appnm= prop.getObjectLocator(prop.Loginprop.getProperty("invalidlogin"));	
+			text=base.verifyLogin(appnm);
+		}
 		return text;
 	}
 	

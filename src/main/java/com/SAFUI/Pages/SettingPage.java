@@ -2,8 +2,6 @@
  * 
  */
 package com.SAFUI.Pages;
-import java.util.List;
-import java.util.NoSuchElementException;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.*;
 import com.SAFUI.Utils.BasePage;
@@ -113,11 +111,11 @@ public class SettingPage {
 		base.selecttext(attriDropbox, attri);
 		base.selecttext(comparatorDropbox, filtercompa);
 		
-		WebElement ftv=base.returnElement(filtertriggervalue);
+	
 		base.waitElementToBeClickableCondition(filtertriggervalue);
 		
 		
-		ftv.sendKeys(ftriggervalue);	
+		base.sendkeys(filtertriggervalue,ftriggervalue);	
 		base.waitElementToBeClickableCondition(filtertriggervalue);
 		
 		
@@ -185,9 +183,13 @@ public class SettingPage {
 	
 	public void clickOKBtn()
 	{
-		base.click(okBtn);
-		base.waitElementToBeClickableCondition(addnewrulebtn);
+		base.scrollPageDown();
+		base.setFocusonWindow(okBtn);
+		base.submit(okBtn);
+		//base.waitElementToBeClickableCondition(addnewrulebtn);
 	}
+	
+	
 	
 	public String verifyText(String text)
 	{				
