@@ -2,7 +2,6 @@ package com.SAFUI.Utils;
 
 import java.io.*;
 import org.apache.poi.xssf.usermodel.*;
-import org.testng.annotations.*;
 import org.apache.poi.ss.usermodel.*;
 
 
@@ -14,37 +13,27 @@ public class ReadExcelFile {
 		public 	XSSFSheet sheet;
 		public  XSSFRow Row;
 		public  XSSFCell cell;
-		    
+		protected ReadingProperties properties;
 		public  Object[][] Testdata;
-		public 	Object[][] deletetestdata;
-		public 	Object[][] edittestdata;
-		public 	Object[][] logintestdata;
-		
-		String 	sheet1 = "Add new rule";
-		String 	sheet2 = "Delete Rule";
-		String  sheet3 = "Edit Rule";
-		String  sheet4 = "Enable/Disable Rule";
-		String  sheet5 = "Login Credentials";
-		String 	basepath;
-		String 	filenm;
-		
-	   
-	    protected ReadingProperties properties;
+	
+		String 	basepath, 	filenm;
+	    
+	    
 	    
 	    public ReadExcelFile(){
-	    	properties =new ReadingProperties();
-			properties.loadProperty();
-			
-			basepath=System.getProperty("user.dir")+properties.Settingprop.getProperty("excelfilepath");
-			filenm = properties.Settingprop.getProperty("excelfilename");
+	    	properties =new ReadingProperties("ConfigCenter.properties");
+		
+			basepath=System.getProperty("user.dir")+properties.CONFIG.getProperty("excelfilepath");
+			filenm = properties.CONFIG.getProperty("excelfilename");
+			file = new File(basepath+"\\"+filenm);
 	    }
 	    
 	    
 	    
-	    public Object[][] readExcelSheet(String filePath,String fileName,String sheetName) {
+	    public Object[][] readExcelSheet(String fileName, String sheetName) {
 	    
-	    		file = new File(filePath+"\\"+fileName);
-		try {
+	    		
+	    		try {
 				inputStream = new FileInputStream(file);
 			
 			    //Find the file extension by spliting file name in substring and getting only extension name
@@ -81,38 +70,8 @@ public class ReadExcelFile {
 	   }
 
 
-		@DataProvider (name = "Addnewruletestdata")
-		public Object[][] getAddNewRuleTestData(){
-
-			Testdata = readExcelSheet (basepath,filenm,sheet1);
-			return Testdata;
-		}
-		
-		
-		
-		@DataProvider(name="Deleteruletestdata")
-		public Object[][] getDeleteRuleTestData(){
-			deletetestdata=readExcelSheet(basepath, filenm, sheet2);	
-			return deletetestdata;
-		}
-		
-		
-		@DataProvider(name="Editruletestdata")
-		public Object[][] getEditRuleTestData(){
-			edittestdata=readExcelSheet(basepath, filenm, sheet3);	
-			return edittestdata;
-		}
-		
-		@DataProvider(name="logindata")
-		public Object[][] getLoginDetails(){
-			logintestdata= readExcelSheet(basepath, filenm, sheet5);	
-			return logintestdata;
-		}
-		
-		@SuppressWarnings("deprecation")
-		public  String getCellData(String sheetName, int row, int col){
-	    	
-	    	// Cell = new XSSFCell(Row, null);
+	    @SuppressWarnings("deprecation")
+		public  String getCellData(String sheetName, int row, int col){	    	
 	        try {
 	            int index = workbook.getSheetIndex(sheetName);
 	            sheet = workbook.getSheetAt(index);
@@ -135,9 +94,7 @@ public class ReadExcelFile {
 
 		            case  Cell.CELL_TYPE_NUMERIC:
 		            	  cell.setCellType(Cell.CELL_TYPE_STRING);
-		            	  return String.valueOf(cell.getStringCellValue());
-		            	  
-		            // String.valueOf(cell.getNumericCellValue());          
+		            	  return String.valueOf(cell.getStringCellValue());    
 
 		            case  Cell.CELL_TYPE_BLANK:
 			            return "";      
@@ -152,8 +109,11 @@ public class ReadExcelFile {
 	        }
 	            catch (Exception e) {
 	            	System.out.println(e.getMessage());
-	            	return "row " + row + " or column " + col+ " does not exist in xls";
+	            	return "row " + row + " or column " + col+ " does not exist in xlsx";
 	            }
-
 	    }
+	    
+	    
+		
+		
 }

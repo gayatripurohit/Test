@@ -10,56 +10,58 @@ import  org.testng.annotations.*;
  */
 public class AddNewRuleTestScript extends  TestTemplate{
 	
-	String text;
-
-
-//	@AfterClass
-//	public void closeBrowser()
-//	{
-//		System.out.println("in After class ");
-//		base.closeAllDrivers();
-//	}
-//	
+	
+	
 	@BeforeMethod
 	public void LoginPage()
 	{
 		login.validLogin();	
-		menu.goToSettingPage();
 	}
-//	
-//	@AfterMethod
-//	public void LogoutPage()
-//	{
-//		login.logoutBtn();	
-//		
-//	}
 	
-	@Test(dataProvider="Addnewruletestdata",dataProviderClass=ReadExcelFile.class)
+	
+	@Test(dataProvider="Addnewruletestdata",dataProviderClass=DataProviderClass.class)
 	public void AddNewRuleBtn(String rulenm,String severity,String attri, String filtercompa,String filtertriggervalue,
 									String aggregation,String metric,String conditioncompa,String conditiontriggervalue,
 									String timewindow,String msgtemplate, String conditionexpr,String notifyrule )
 	{
 		
 		System.out.println("in AddNewRuleBtn()");
-
-		setpage.clickAddNewRuleButton();
-		setpage.enterRuleName(rulenm);
-		setpage.enterSeverity(severity);
+		menu.goToConfigCenterPage(); // go to ConfigCenter page
+		
+		configpage.clickAddNewRuleButton();
+		configpage.enterRuleName(rulenm);
+		configpage.enterSeverity(severity);
 		     
-		setpage.clickAddFilter();
-		setpage.addNewFilter(attri,filtercompa,filtertriggervalue);
+		configpage.clickAddFilter();
+		configpage.addNewFilter(attri,filtercompa,filtertriggervalue);
 				
-		setpage.clickAddNewCondition();
-		setpage.addNewCondition(aggregation, metric, conditioncompa, conditiontriggervalue, timewindow, msgtemplate);
+		configpage.clickAddNewCondition();
+		configpage.addNewCondition(aggregation, metric, conditioncompa, conditiontriggervalue, timewindow, msgtemplate);
 		
-		setpage.enterconditionExpression(conditionexpr);
-		setpage.enterNotificationRuleMsg(notifyrule);
+
+		configpage.enterconditionExpression(conditionexpr);
+		configpage.enterNotificationRuleMsg(notifyrule);
 		
-		setpage.clickOKBtn();
+		configpage.clickOKBtn();
 		
-		//click on Config page to set focus
-		
-		text =setpage.verifyText(rulenm);
-		Assert.assertEquals(rulenm,text);
+		menu.goToSearchPage(); // as the list is not displayed after creating a rule
+		menu.goToConfigCenterPage();
+
+		Assert.assertEquals(rulenm,base.verifyContainsText(rulenm));
 	}
+	
+	@AfterMethod
+	public void LogoutPage()
+	{
+		login.logoutBtn();			
+	}
+	
+	@AfterClass
+	public void closeBrowser()
+	{
+		System.out.println("in After class ");
+		base.closeAllDrivers();
+	}
+	
+	
 }

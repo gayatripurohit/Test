@@ -9,25 +9,21 @@ public class TestTemplate {
 	protected ReadingProperties prop;
 	
 	protected LoginPage login;
-	protected SettingPage setpage;
+	protected ConfigCenterPage configpage;
 	protected TopMenu menu;
 	protected BasePage base;
 	
 	
 	@BeforeClass
-	public void BaseTest(){
-		
-		prop=new ReadingProperties();
-		prop.loadProperty();
+	public void BaseTest(){		
+		prop=new ReadingProperties("config.properties");
 
 		base=new BasePage();
 		base.launchBrowser(prop.CONFIG.getProperty("appURL"));
 		
 		login = new LoginPage(base);
-		setpage =new SettingPage(base);
-		menu =new TopMenu(base);
-		
-		
+		configpage =new ConfigCenterPage(base);
+		menu =new TopMenu(base);	
 	}
 	
 }

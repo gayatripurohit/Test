@@ -7,11 +7,11 @@ import org.openqa.selenium.support.ui.*;
 import com.SAFUI.Utils.BasePage;
 import com.SAFUI.Utils.ReadingProperties;
 /**
- *This class contains all the locators and methods used for Setting page
+ *This class contains all the locators and methods used for ConfigCenter page
  *
  */
 
-public class SettingPage {
+public class ConfigCenterPage {
 	
 	
 	WebElement ftv;
@@ -19,42 +19,43 @@ public class SettingPage {
 	ReadingProperties prop;
 	WebDriverWait wait;
 	
-	//locators for add new rule dialog  & enable, delete ,edit buttons on setting page
+	//locators for add new rule dialog  & enable, delete ,edit buttons on ConfigCenter page
 	By addnewrulebtn, ruleName, severity,addFilterBtn, attriDropbox, comparatorDropbox, filtertriggervalue, addconditionBtn,
 	aggreDropboxcon ,metricDrpboxcon,compDropboxcon , condTrrigerValue ,condTimeWindow , msgTemplate ,
 	condExpression,notiRuleMsg , okBtn, enablebtn ,deletebtn, editbtn;
 	
-	public SettingPage(BasePage pg){	
-		prop=new ReadingProperties();
-		prop.loadProperty();
+	public ConfigCenterPage(BasePage pg){	
+		prop=new ReadingProperties("ConfigCenter.properties");
+		
 		base=pg;
-		locatorsForSetting();
+		locatorsForConfigCenter();
 	}
 	
 
-	public void locatorsForSetting(){
+	public void locatorsForConfigCenter(){
 	// all locators on add new rule page
-		 addnewrulebtn=prop.getObjectLocator(prop.Settingprop.getProperty("addnewrulebtnlocator"));
-		 ruleName = prop.getObjectLocator(prop.Settingprop.getProperty("rulenamelocator"));
-		 severity = prop.getObjectLocator(prop.Settingprop.getProperty("severitylocator"));
 		
-		 addFilterBtn = prop.getObjectLocator(prop.Settingprop.getProperty("addfilterbtnlocator"));
-		 attriDropbox = prop.getObjectLocator(prop.Settingprop.getProperty("attributelocator"));
-		 comparatorDropbox = prop.getObjectLocator(prop.Settingprop.getProperty("compdropboxlocator"));
-		 filtertriggervalue = prop.getObjectLocator(prop.Settingprop.getProperty("ftriggervaluelocator"));
+		 addnewrulebtn=prop.getObjectLocator(prop.CONFIG.getProperty("addnewrulebtnlocator"));
+		 ruleName = prop.getObjectLocator(prop.CONFIG.getProperty("rulenamelocator"));
+		 severity = prop.getObjectLocator(prop.CONFIG.getProperty("severitylocator"));
+		
+		 addFilterBtn = prop.getObjectLocator(prop.CONFIG.getProperty("addfilterbtnlocator"));
+		 attriDropbox = prop.getObjectLocator(prop.CONFIG.getProperty("attributelocator"));
+		 comparatorDropbox = prop.getObjectLocator(prop.CONFIG.getProperty("compdropboxlocator"));
+		 filtertriggervalue = prop.getObjectLocator(prop.CONFIG.getProperty("ftriggervaluelocator"));
 	
-		 addconditionBtn = prop.getObjectLocator(prop.Settingprop.getProperty("addconditionbtnlocator"));
-		 aggreDropboxcon = prop.getObjectLocator(prop.Settingprop.getProperty("aggredropboxconlocator"));
-		 metricDrpboxcon = prop.getObjectLocator(prop.Settingprop.getProperty("metricDrpboxconlocator"));
-		 compDropboxcon = prop.getObjectLocator(prop.Settingprop.getProperty("compDropboxconlocator"));
-		 condTrrigerValue = prop.getObjectLocator(prop.Settingprop.getProperty("condTrrigerValuelocator"));
-		 condTimeWindow = prop.getObjectLocator(prop.Settingprop.getProperty("condTimeWindowlocator"));
-		 msgTemplate = prop.getObjectLocator(prop.Settingprop.getProperty("msgTemplatelocator"));
+		 addconditionBtn = prop.getObjectLocator(prop.CONFIG.getProperty("addconditionbtnlocator"));
+		 aggreDropboxcon = prop.getObjectLocator(prop.CONFIG.getProperty("aggredropboxconlocator"));
+		 metricDrpboxcon = prop.getObjectLocator(prop.CONFIG.getProperty("metricDrpboxconlocator"));
+		 compDropboxcon = prop.getObjectLocator(prop.CONFIG.getProperty("compDropboxconlocator"));
+		 condTrrigerValue = prop.getObjectLocator(prop.CONFIG.getProperty("condTrrigerValuelocator"));
+		 condTimeWindow = prop.getObjectLocator(prop.CONFIG.getProperty("condTimeWindowlocator"));
+		 msgTemplate = prop.getObjectLocator(prop.CONFIG.getProperty("msgTemplatelocator"));
 		
-		 condExpression = prop.getObjectLocator(prop.Settingprop.getProperty("condExpressionlocator"));
-		 notiRuleMsg = prop.getObjectLocator(prop.Settingprop.getProperty("notiRuleMsglocator"));
+		 condExpression = prop.getObjectLocator(prop.CONFIG.getProperty("condExpressionlocator"));
+		 notiRuleMsg = prop.getObjectLocator(prop.CONFIG.getProperty("notiRuleMsglocator"));
 				
-		 okBtn = prop.getObjectLocator(prop.Settingprop.getProperty("okBtnlocator"));
+		 okBtn = prop.getObjectLocator(prop.CONFIG.getProperty("okBtnlocator"));
 	}
 	
 	
@@ -109,14 +110,11 @@ public class SettingPage {
 	{
 		
 		base.selecttext(attriDropbox, attri);
+		base.waitElementToBeClickableCondition(comparatorDropbox);
 		base.selecttext(comparatorDropbox, filtercompa);
 		
-	
-		base.waitElementToBeClickableCondition(filtertriggervalue);
-		
-		
 		base.sendkeys(filtertriggervalue,ftriggervalue);	
-		base.waitElementToBeClickableCondition(filtertriggervalue);
+		base.sleepMethod(2000);
 		
 		
 //		if (ftriggervalue != "Timestamp" || ftriggervalue != "SLOT" || ftriggervalue != "PORT" || 
@@ -165,10 +163,11 @@ public class SettingPage {
 		base.selecttext(aggreDropboxcon, aggregation);
 		base.selecttext(metricDrpboxcon, metric);
 		base.selecttext(compDropboxcon, conditioncompa);
-
+		base.sleepMethod(3000);
 		base.sendkeys(condTrrigerValue,conditiontriggervalue);
 		base.sendkeys(condTimeWindow,timewindow);
 		base.sendkeys(msgTemplate,msgtemplate);
+		base.sleepMethod(3000);
 	}
  
 	public void enterconditionExpression(String conditionexpr)
@@ -183,36 +182,9 @@ public class SettingPage {
 	
 	public void clickOKBtn()
 	{
-		base.scrollPageDown();
-		base.setFocusonWindow(okBtn);
-		base.submit(okBtn);
-		//base.waitElementToBeClickableCondition(addnewrulebtn);
+		base.click(okBtn);	
 	}
 	
-	
-	
-	public String verifyText(String text)
-	{				
-	//	xpath  //h3[contains(text()='"+text+"')]
-		
-		By element= By.xpath("//*[contains(text(),'"+text+"')]");
-		String verifystr=base.verifyText(element);
-		return verifystr;		
-	}
-	
-	public boolean verifyTextbyboolean(String text)
-	{				
-	//	xpath  //h3[contains(text()='"+text+"')]
-		boolean value;
-		By element= By.xpath("//*[contains(text(),'"+text+"')]");
-		String verifystr=base.verifyText(element);
-		
-		if(verifystr != null)
-			value=true;
-		else
-			value=false;
-		return value;		
-	}
 	
 	//Delete rule button 
 	public void clickDeleteRuleBtn(String rulenm)

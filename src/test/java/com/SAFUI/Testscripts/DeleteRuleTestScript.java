@@ -8,36 +8,41 @@ import com.SAFUI.Utils.*;
  */
 public class DeleteRuleTestScript extends  TestTemplate {
 	
-
-	
-	@BeforeClass
-	public void before(){
-		
+	@BeforeMethod
+	public void LoginPage()
+	{
+		login.validLogin();	
 	}
 	
-	@AfterClass     
-	public void after(){
-		base.closeAllDrivers();
-	}
-	
-	@Test(priority=1,dataProvider="Deleteruletestdata",dataProviderClass=ReadExcelFile.class)
+	@Test(dataProvider="Deleteruletestdata",dataProviderClass=DataProviderClass.class)
 	public void deleterule(String rulenm)
 	{
 		String text;    
 		
-		menu.goToSettingPage();
+		menu.goToConfigCenterPage();
+		text = base.verifyContainsText(rulenm);
 		
-		text = setpage.verifyText(rulenm);
-		
-		if(text!=null && text.equals(rulenm)){
-			setpage.clickDeleteRuleBtn(rulenm);	
+		if(text!=null && text.equalsIgnoreCase(rulenm)){
+			configpage.clickDeleteRuleBtn(rulenm);	
 		}
 		else{
 			System.out.println("Rule not found !!"+rulenm);
 			}	
 			
-		Assert.assertFalse(setpage.verifyTextbyboolean(rulenm));
+		Assert.assertFalse(base.verifyContainsTextbyboolean(rulenm));
 	}
 	
+	@AfterMethod
+	public void LogoutPage()
+	{
+		login.logoutBtn();	
+		
+	}
+	
+	
+	@AfterClass     
+	public void after(){
+		base.closeAllDrivers();
+	}
 
 }

@@ -13,30 +13,32 @@ public class TopMenu{
 	
 
 	public TopMenu(BasePage pg){
-		prop=new ReadingProperties();
-		prop.loadProperty();
+		prop=new ReadingProperties("Home.properties");
+		
 		base=pg;
 	}
 	
-	public void goToSettingPage(){
-		configcenterpgbtn = prop.getObjectLocator(prop.Homeprop.getProperty("configcenterpglocator"));
-		base.waitPresenceOfElementCondition(configcenterpgbtn);
-		base.waitPresenceOfElementCondition(configcenterpgbtn);
-		 base.click(configcenterpgbtn);		
+	public void goToConfigCenterPage(){
+		configcenterpgbtn = prop.getObjectLocator(prop.CONFIG.getProperty("configcenterpglocator"));
+		
+		base.click(configcenterpgbtn);
+		base.sleepMethod(3000);
 	}
 	
 	public void goToSearchPage(){
-		searchpgbtn = prop.getObjectLocator(prop.Homeprop.getProperty("searchpglocator"));
+		searchpgbtn = prop.getObjectLocator(prop.CONFIG.getProperty("searchpglocator"));
+		base.sleepMethod(3000);
 		base.click(searchpgbtn);
 	}
 	
 	public void goToDashboardPage(){
-		dashboardpgbtn = prop.getObjectLocator(prop.Homeprop.getProperty("dashboardpglocator"));
+		dashboardpgbtn = prop.getObjectLocator(prop.CONFIG.getProperty("dashboardpglocator"));
+		base.sleepMethod(3000);
 		base.click(dashboardpgbtn);
 	}
 
 //	public void goToUsersPage(){
-//		 userspgbtn = prop.getObjectLocator(prop.Homeprop.getProperty("userspglocator"));
+//		 userspgbtn = prop.getObjectLocator(prop.CONFIG.getProperty("userspglocator"));
 //		 base.click(userspgbtn);
 //	}
 	

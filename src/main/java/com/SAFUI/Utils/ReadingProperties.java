@@ -8,39 +8,26 @@ import org.openqa.selenium.By;
 public class ReadingProperties {
 		
 	public Properties CONFIG=null;
-	public Properties Settingprop=null;
+	public Properties ConfigCenterprop=null;
 	public Properties Loginprop=null;
 	public Properties Homeprop = null;
-		
+	FileInputStream objfile;
+	
 	String locatorProperty;
 	String locatorType;
 	String locatorValue;
 	By locator;
 	
-	public void loadProperty()
+	public ReadingProperties(String filenm)
 	{
 		CONFIG=new Properties();
-		Settingprop =new Properties();
-		Loginprop = new Properties();
-		Homeprop = new Properties();
-		
+	
 		try
 		{
-			FileInputStream objfile = new FileInputStream(System.getProperty("user.dir")+"\\src\\main\\resources\\ObjectRepository\\config.properties");
-			CONFIG.load(objfile);
-			
-			FileInputStream settingfile = new FileInputStream(System.getProperty("user.dir")+"\\src\\main\\resources\\ObjectRepository\\Setting.properties");
-			Settingprop.load(settingfile);
-			
-			FileInputStream loginfile = new FileInputStream(System.getProperty("user.dir")+"\\src\\main\\resources\\ObjectRepository\\Login.properties");
-			Loginprop.load(loginfile);
-			
-			FileInputStream homefile = new FileInputStream(System.getProperty("user.dir")+"\\src\\main\\resources\\ObjectRepository\\Home.properties");
-			Homeprop.load(homefile);
-			
+			 objfile = new FileInputStream(System.getProperty("user.dir")+"\\src\\main\\resources\\ObjectRepository\\"+filenm+"");
+			 CONFIG.load(objfile);
 		}
-		catch (Exception e) {
-			
+		catch (Exception e) {			
 			e.printStackTrace();
 		 	}
 	
@@ -48,32 +35,31 @@ public class ReadingProperties {
 	
 	public By getObjectLocator(String locatorProperty)
 	{
-		
 		 locatorType = locatorProperty.split(":")[0];
 		 locatorValue = locatorProperty.split(":")[1];
 
 		 locator = null;
-		switch(locatorType)
+		switch(locatorType.toLowerCase())
 		{
-		case "Id":
+		case "id":
 			locator = By.id(locatorValue);
 			break;
-		case "Name":
+		case "name":
 			locator = By.name(locatorValue);
 			break;
-		case "CssSelector":
+		case "cssselector":
 			locator = By.cssSelector(locatorValue);
 			break;
-		case "Xpath":
+		case "xpath":
 			locator = By.xpath(locatorValue);
 			break;
-		case "LinkText":
+		case "linktext":
 			locator = By.linkText(locatorValue);
 			break;
-		case "PartialLinkText":
+		case "partiallinktext":
 			locator = By.partialLinkText(locatorValue);
 			break;
-		case "TagName":
+		case "tagName":
 			locator = By.tagName(locatorValue);
 			break;		
 		}

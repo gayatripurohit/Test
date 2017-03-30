@@ -2,21 +2,13 @@ package com.SAFUI.Testscripts;
 
 import org.testng.Assert;
 import org.testng.annotations.*;
-import com.SAFUI.Utils.ReadExcelFile;
+import com.SAFUI.Utils.DataProviderClass;
 import com.SAFUI.Utils.TestTemplate;
 
 public class LoginTestScript extends  TestTemplate{
-	
-	String text;
-	
-	@AfterClass
-	public void after(){
-		System.out.println("in After class ");
-		base.closeAllDrivers();
-	}
 
 	
-	@Test(dataProvider="logindata",dataProviderClass=ReadExcelFile.class)
+	@Test(dataProvider="logindata",dataProviderClass=DataProviderClass.class)
 	public void LoginPage(String usernm, String password, String result)
 	{
 		login.enterLogindetails(usernm,password);
@@ -25,6 +17,11 @@ public class LoginTestScript extends  TestTemplate{
 	}
 	
 	
+	@AfterClass
+	public void after(){
+		System.out.println("in After class ");
+		base.closeAllDrivers();
+	}
 	
 	
 }
