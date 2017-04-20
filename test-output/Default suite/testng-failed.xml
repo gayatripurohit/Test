@@ -3,12 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="com.SAFUI.Testscripts.LoginTestScript">
+      <class name="com.SAFUI.Testscripts.AddAdvanceRuleTestScript">
         <methods>
-          <include name="LoginPage"/>
+          <include name="AddAdvanceRule"/>
+          <include name="closeBrowser"/>
           <include name="BaseTest"/>
         </methods>
-      </class> <!-- com.SAFUI.Testscripts.LoginTestScript -->
+      </class> <!-- com.SAFUI.Testscripts.AddAdvanceRuleTestScript -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

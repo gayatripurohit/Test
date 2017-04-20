@@ -13,14 +13,13 @@ public class TopMenu{
 	
 
 	public TopMenu(BasePage pg){
-		prop=new ReadingProperties("Home.properties");
-		
+		prop=new ReadingProperties("Home.properties");		
 		base=pg;
 	}
 	
 	public void goToConfigCenterPage(){
-		configcenterpgbtn = prop.getObjectLocator(prop.CONFIG.getProperty("configcenterpglocator"));
-		
+		configcenterpgbtn = prop.getObjectLocator(prop.CONFIG.getProperty("configcenterpglocator"));		
+		base.sleepMethod(3000);
 		base.click(configcenterpgbtn);
 		base.sleepMethod(3000);
 	}
@@ -29,12 +28,14 @@ public class TopMenu{
 		searchpgbtn = prop.getObjectLocator(prop.CONFIG.getProperty("searchpglocator"));
 		base.sleepMethod(3000);
 		base.click(searchpgbtn);
+		base.sleepMethod(3000);
 	}
 	
 	public void goToDashboardPage(){
 		dashboardpgbtn = prop.getObjectLocator(prop.CONFIG.getProperty("dashboardpglocator"));
 		base.sleepMethod(3000);
 		base.click(dashboardpgbtn);
+		base.sleepMethod(3000);
 	}
 
 //	public void goToUsersPage(){

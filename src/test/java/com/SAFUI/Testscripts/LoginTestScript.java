@@ -17,11 +17,6 @@ public class LoginTestScript extends  TestTemplate{
 	}
 	
 	
-	@AfterClass
-	public void after(){
-		System.out.println("in After class ");
-		base.closeAllDrivers();
-	}
-	
+
 	
 }

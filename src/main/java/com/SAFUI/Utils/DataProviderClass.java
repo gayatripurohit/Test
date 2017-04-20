@@ -10,11 +10,12 @@ public class DataProviderClass {
 	protected ReadExcelFile readexcel;
 	
 	public  Object[][] obj;	
-	String 	sheet1 = "Add new rule";
+	String 	sheet1 = "Add basic rules";
 	String 	sheet2 = "Delete Rule";
 	String  sheet3 = "Edit Rule";
 	String  sheet4 = "Enable/Disable Rule";
 	String  sheet5 = "Login Credentials";
+	String  sheet6 = "Add Advance rules";
 	String  filenm;
 	
 	
@@ -31,9 +32,15 @@ public class DataProviderClass {
 	}
 	
 
-	@DataProvider (name = "Addnewruletestdata")
-	public Object[][] getAddNewRuleTestData(){
+	@DataProvider (name = "Addbasicruletestdata")
+	public Object[][] getAddBasicRuleTestData(){
 		obj = readexcel.readExcelSheet (filenm,sheet1);
+		return obj;
+	}
+	
+	@DataProvider (name = "Addadvanceruletestdata")
+	public Object[][] getAddAdvanceRuleTestData(){
+		obj = readexcel.readExcelSheet (filenm,sheet6);
 		return obj;
 	}
 	

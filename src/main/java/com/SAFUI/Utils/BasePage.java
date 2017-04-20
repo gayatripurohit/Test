@@ -18,6 +18,7 @@ public class BasePage {
 	public WebDriver driver;
 	protected WebDriverWait wait;
 	protected ReadingProperties prop;
+	Alert alert= null;
 	
 	BasePage base;
 
@@ -156,4 +157,6 @@ public class BasePage {
 		}
 	}
 
+	
+	
 }

@@ -1,5 +1,6 @@
 package com.SAFUI.Utils;
 
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
 import com.SAFUI.Pages.*;
@@ -24,6 +25,13 @@ public class TestTemplate {
 		login = new LoginPage(base);
 		configpage =new ConfigCenterPage(base);
 		menu =new TopMenu(base);	
+	}
+	
+	@AfterClass
+	public void closeBrowser()
+	{
+		System.out.println("in After class ");
+		base.closeAllDrivers();
 	}
 	
 }

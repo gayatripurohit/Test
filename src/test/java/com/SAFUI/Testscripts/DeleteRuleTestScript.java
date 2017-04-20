@@ -24,6 +24,8 @@ public class DeleteRuleTestScript extends  TestTemplate {
 		
 		if(text!=null && text.equalsIgnoreCase(rulenm)){
 			configpage.clickDeleteRuleBtn(rulenm);	
+			configpage.confirmDeleteAlert();
+			configpage.handleWindowAlert();
 		}
 		else{
 			System.out.println("Rule not found !!"+rulenm);
@@ -37,12 +39,6 @@ public class DeleteRuleTestScript extends  TestTemplate {
 	{
 		login.logoutBtn();	
 		
-	}
-	
-	
-	@AfterClass     
-	public void after(){
-		base.closeAllDrivers();
 	}
 
 }

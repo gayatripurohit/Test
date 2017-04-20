@@ -47,6 +47,9 @@ public class ReadingProperties {
 		case "name":
 			locator = By.name(locatorValue);
 			break;
+		case "classname":
+			locator = By.className(locatorValue);
+			break;
 		case "cssselector":
 			locator = By.cssSelector(locatorValue);
 			break;
@@ -59,9 +62,10 @@ public class ReadingProperties {
 		case "partiallinktext":
 			locator = By.partialLinkText(locatorValue);
 			break;
-		case "tagName":
+		case "tagname":
 			locator = By.tagName(locatorValue);
-			break;		
+			break;	
+		
 		}
 		return locator;
 	}	

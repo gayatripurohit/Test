@@ -22,7 +22,8 @@ public class ConfigCenterPage {
 	//locators for add new rule dialog  & enable, delete ,edit buttons on ConfigCenter page
 	By addnewrulebtn, ruleName, severity,addFilterBtn, attriDropbox, comparatorDropbox, filtertriggervalue, addconditionBtn,
 	aggreDropboxcon ,metricDrpboxcon,compDropboxcon , condTrrigerValue ,condTimeWindow , msgTemplate ,
-	condExpression,notiRuleMsg , okBtn, enablebtn ,deletebtn, editbtn;
+	condExpression,notiRuleMsg , okBtn, enablebtn ,deletebtn, editbtn, alertOkbtn , alertDeletebtn, advconditionbtn, 
+	exprmetricname, addoperandbtn, operandselect, advexprtextbox, advcompDropbox, advTriggerValue, advTimeWindow;
 	
 	public ConfigCenterPage(BasePage pg){	
 		prop=new ReadingProperties("ConfigCenter.properties");
@@ -56,6 +57,21 @@ public class ConfigCenterPage {
 		 notiRuleMsg = prop.getObjectLocator(prop.CONFIG.getProperty("notiRuleMsglocator"));
 				
 		 okBtn = prop.getObjectLocator(prop.CONFIG.getProperty("okBtnlocator"));
+		 
+		 //alertlocators
+		 alertOkbtn = prop.getObjectLocator(prop.CONFIG.getProperty("alertOklocator"));
+		 alertDeletebtn =prop.getObjectLocator(prop.CONFIG.getProperty("alertYesDeletelocator"));
+		 
+		 //advance condition locators
+		 advconditionbtn = prop.getObjectLocator(prop.CONFIG.getProperty("advanceconditionbtnlocator")); 
+		 exprmetricname = prop.getObjectLocator(prop.CONFIG.getProperty("expremetricnamelocator"));
+		 addoperandbtn = prop.getObjectLocator(prop.CONFIG.getProperty("addoperandbtnlocator"));
+		 operandselect = prop.getObjectLocator(prop.CONFIG.getProperty("operandselectlocator"));
+		 advexprtextbox= prop.getObjectLocator(prop.CONFIG.getProperty("advexprtextboxlocator"));
+		 advcompDropbox= prop.getObjectLocator(prop.CONFIG.getProperty("advcompDropboxlocator"));
+		 advTriggerValue = prop.getObjectLocator(prop.CONFIG.getProperty("advTriggerValuelocator"));
+		 advTimeWindow = prop.getObjectLocator(prop.CONFIG.getProperty("advTimeWindowlocator"));
+		 
 	}
 	
 	
@@ -151,12 +167,19 @@ public class ConfigCenterPage {
 		
 	}
 	
-	
-	public void clickAddNewCondition()
+	//click add condition button
+	public void clickAddCondition()
 	{
 		base.click(addconditionBtn);
 	}
 	
+	//click advance button
+	public void clickAdvanceCondition()
+	{
+		base.click(advconditionbtn);
+	}
+	
+	//add basic condition
 	public void addNewCondition(String aggregation,String metric,String conditioncompa,String conditiontriggervalue,
 			String timewindow,String msgtemplate)
 	{
@@ -170,6 +193,37 @@ public class ConfigCenterPage {
 		base.sleepMethod(3000);
 	}
  
+	//add advance condition
+	public void addAdvanceCondition(String aggregation,String expression,String conditioncompa,String conditiontriggervalue,
+			String timewindow,String msgtemplate)
+	{
+		base.selecttext(aggreDropboxcon, aggregation);
+		base.sendkeys(advexprtextbox, expression);
+		base.selecttext(advcompDropbox, conditioncompa);
+		base.sleepMethod(3000);
+		base.sendkeys(advTriggerValue,conditiontriggervalue);
+		base.sendkeys(advTimeWindow,timewindow);
+		base.sendkeys(msgTemplate,msgtemplate);
+		base.sleepMethod(3000);
+	}
+	
+	//add expression metric name
+	public void enterExpressionMetric(String exprmetric)
+	{
+		base.sendkeys(exprmetricname,exprmetric);
+	}
+	
+	//click add operand button
+	public void clickAddOperand(){
+		base.click(addoperandbtn);
+	}
+	
+	//add operands
+	public void addOperand(String operand1)
+	{
+		base.selecttext(operandselect, operand1);
+	}
+	
 	public void enterconditionExpression(String conditionexpr)
 	{
 		base.sendkeys(condExpression,conditionexpr);
@@ -233,6 +287,17 @@ public class ConfigCenterPage {
 		catch(Exception e){
 			e.getMessage();
 		}
+	}
+	
+	//Alert - click on OK button after rule is created / updated
+	public void handleWindowAlert(){
+		base.sleepMethod(3000);
+		base.click(alertOkbtn);
+	}
+	
+	//Alert - click on Yes delete it while deleting a rule.
+	public void confirmDeleteAlert(){
+		base.click(alertDeletebtn);
 	}
 	
 	

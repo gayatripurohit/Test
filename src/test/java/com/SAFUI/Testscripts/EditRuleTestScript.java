@@ -38,28 +38,21 @@ public class EditRuleTestScript extends  TestTemplate{
 			configpage.enterNotificationRuleMsg(notifyrule);
 				
 			configpage.clickOKBtn();
+			configpage.handleWindowAlert();
 		}
 		else
-			System.out.println("Rule not found to edit"+ rulenm);	
+			System.out.println( rulenm +" not found to edit");	
 		
 		verifytext=base.verifyContainsText(rulenm);
-		Assert.assertEquals(rulenm, verifytext);
-		
+		Assert.assertEquals(rulenm, verifytext);		
 	}
+	
 	
 	@AfterMethod
 	public void LogoutPage()
 	{
-		login.logoutBtn();	
-		
-		
+		login.logoutBtn();		
 	}
 	
-	@AfterClass
-	public void closeBrowser()
-	{
-		System.out.println("in After class ");
-		base.closeAllDrivers();
-	}
 	
 }
