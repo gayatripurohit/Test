@@ -43,8 +43,8 @@ public class EditRuleTestScript extends  TestTemplate{
 		else
 			System.out.println( rulenm +" not found to edit");	
 		
-		verifytext=base.verifyContainsText(rulenm);
-		Assert.assertEquals(rulenm, verifytext);		
+		
+		Assert.assertEquals(rulenm, base.verifyContainsText(rulenm));		
 	}
 	
 	

@@ -46,6 +46,17 @@ public class LoginPage {
 		base.click(loginbtn);		
 	}
 	
+	public void AccountLogin(){
+		prop= new ReadingProperties("config.properties");
+		
+		base.sendkeys(usernm,prop.CONFIG.getProperty("username_app"));
+		base.sendkeys(password,prop.CONFIG.getProperty("password_app"));
+		
+		base.sleepMethod(3000);
+		
+		base.click(loginbtn);		
+	}
+	
 	//test case method for Login 
 	public void enterLogindetails(String unm,String pwd)
 	{

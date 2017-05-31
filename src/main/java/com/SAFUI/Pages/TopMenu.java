@@ -38,10 +38,12 @@ public class TopMenu{
 		base.sleepMethod(3000);
 	}
 
-//	public void goToUsersPage(){
-//		 userspgbtn = prop.getObjectLocator(prop.CONFIG.getProperty("userspglocator"));
-//		 base.click(userspgbtn);
-//	}
+	public void goToUsersPage(){
+		userspgbtn = prop.getObjectLocator(prop.CONFIG.getProperty("userspglocator"));
+		base.sleepMethod(3000);
+		base.click(userspgbtn);
+		base.sleepMethod(3000);
+	}
 	
 
 }

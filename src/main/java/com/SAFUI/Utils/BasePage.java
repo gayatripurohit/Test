@@ -97,6 +97,7 @@ public class BasePage {
 	public void sendkeys(By by,String str)
 	{
 		driver.findElement(by).sendKeys(str);
+		
 	}
 	
 	public void selecttext(By by,String str)
@@ -130,8 +131,10 @@ public class BasePage {
 	}
 	
 	public boolean verifyContainsTextbyboolean(String text)
-	{				
-		By element= By.xpath("//*[contains(text(),'"+text+"')]");
+	{			
+		prop=new ReadingProperties("ConfigCenter.properties");
+		
+		By element= prop.getObjectLocator(prop.CONFIG.getProperty("deleterulesuccess"));
 
 		if(getTextOfElement(element) != null)
 			return true;

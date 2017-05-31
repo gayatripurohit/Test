@@ -1,32 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="1" ignored="0" total="1" passed="0">
+<testng-results skipped="0" failed="2" ignored="0" total="2" passed="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="11413" started-at="2017-04-20T06:56:28Z" finished-at="2017-04-20T06:56:39Z">
+  <suite name="Default suite" duration-ms="173679" started-at="2017-05-26T13:31:23Z" finished-at="2017-05-26T13:34:17Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="11413" started-at="2017-04-20T06:56:28Z" finished-at="2017-04-20T06:56:39Z">
-      <class name="com.SAFUI.Testscripts.AddAdvanceRuleTestScript">
-        <test-method status="PASS" signature="BaseTest()[pri:0, instance:com.SAFUI.Testscripts.AddAdvanceRuleTestScript@6093dd95]" name="BaseTest" is-config="true" duration-ms="9553" started-at="2017-04-20T12:26:28Z" finished-at="2017-04-20T12:26:38Z">
+    <test name="Default test" duration-ms="173679" started-at="2017-05-26T13:31:23Z" finished-at="2017-05-26T13:34:17Z">
+      <class name="com.SAFUI.Testscripts.AddAccountsTestScript">
+        <test-method status="PASS" signature="BaseTest()[pri:0, instance:com.SAFUI.Testscripts.AddAccountsTestScript@3835c46]" name="BaseTest" is-config="true" duration-ms="58625" started-at="2017-05-26T19:01:23Z" finished-at="2017-05-26T19:02:22Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BaseTest -->
-        <test-method status="FAIL" signature="AddAdvanceRule(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.SAFUI.Testscripts.AddAdvanceRuleTestScript@6093dd95]" name="AddAdvanceRule" duration-ms="589" started-at="2017-04-20T12:26:38Z" data-provider="Addadvanceruletestdata" finished-at="2017-04-20T12:26:38Z">
-          <exception class="org.testng.internal.reflect.MethodMatcherException">
+        <test-method status="PASS" signature="LoginPage()[pri:0, instance:com.SAFUI.Testscripts.AddAccountsTestScript@3835c46]" name="LoginPage" is-config="true" duration-ms="56225" started-at="2017-05-26T19:02:23Z" finished-at="2017-05-26T19:03:19Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginPage -->
+        <test-method status="FAIL" signature="addNewAccount(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.SAFUI.Testscripts.AddAccountsTestScript@3835c46]" name="addNewAccount" duration-ms="30425" started-at="2017-05-26T19:03:19Z" data-provider="addnewaccounts" finished-at="2017-05-26T19:03:49Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+          </params>
+          <exception class="org.openqa.selenium.NoSuchElementException">
             <message>
-              <![CDATA[
-Data provider mismatch
-Method: AddAdvanceRule([Parameter{index=0, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=1, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=2, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=3, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=4, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=5, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=6, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=7, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=8, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=9, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=10, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=11, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=12, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=13, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=14, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=15, type=java.lang.String, declaredAnnotations=[]}])
-Arguments: [(java.lang.String)Advance rule test,(java.lang.String)CRITICAL,(java.lang.String)tag,(java.lang.String)~=,(java.lang.String)wlc_ap_data,(java.lang.String)Sum of client count,(java.lang.String)CLIENTCOUNT,(java.lang.String),(java.lang.String)SUM,(java.lang.String)O1,(java.lang.String)>=,(java.lang.String)50,(java.lang.String)30,(java.lang.String) %{aggregation} %{metric} %{expression} %{comparator} %{triggervalue} %{timewindow},(java.lang.String),(java.lang.String),(java.lang.String),(java.lang.String),(java.lang.String),(java.lang.String),(java.lang.String),(java.lang.String),(java.lang.String),(java.lang.String)C1,(java.lang.String)Advance rule]]]>
+              <![CDATA[Unable to locate element: //button[contains(text(),'Add Account')]
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.1.0', revision: 'b94c902', time: '2017-02-16 12:21:31 -0800'
+System info: host: 'BHUSHAYA', ip: '10.71.71.93', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_131'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{rotatable=false, raisesAccessibilityExceptions=false, marionette=true, appBuildId=20170125094131, version=, platform=XP, proxy={}, command_id=1, specificationLevel=0, acceptSslCerts=false, processId=7680, browserVersion=51.0.1, platformVersion=6.1, XULappId={ec8030f7-c20a-464f-9b0e-13a3a9e97384}, browserName=firefox, takesScreenshot=true, takesElementScreenshot=true, platformName=windows_nt, firefox_profile=UEsDBBQACAgIACyYukoAAAAAAAAAA...}]
+Session ID: 124c27b3-4aeb-4f3b-ba5d-408c51bec134
+*** Element info: {Using=xpath, value=//button[contains(text(),'Add Account')]}]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.testng.internal.reflect.MethodMatcherException: 
-Data provider mismatch
-Method: AddAdvanceRule([Parameter{index=0, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=1, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=2, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=3, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=4, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=5, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=6, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=7, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=8, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=9, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=10, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=11, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=12, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=13, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=14, type=java.lang.String, declaredAnnotations=[]}, Parameter{index=15, type=java.lang.String, declaredAnnotations=[]}])
-Arguments: [(java.lang.String)Advance rule test,(java.lang.String)CRITICAL,(java.lang.String)tag,(java.lang.String)~=,(java.lang.String)wlc_ap_data,(java.lang.String)Sum of client count,(java.lang.String)CLIENTCOUNT,(java.lang.String),(java.lang.String)SUM,(java.lang.String)O1,(java.lang.String)>=,(java.lang.String)50,(java.lang.String)30,(java.lang.String) %{aggregation} %{metric} %{expression} %{comparator} %{triggervalue} %{timewindow},(java.lang.String),(java.lang.String),(java.lang.String),(java.lang.String),(java.lang.String),(java.lang.String),(java.lang.String),(java.lang.String),(java.lang.String),(java.lang.String)C1,(java.lang.String)Advance rule]
-	at org.testng.internal.reflect.DataProviderMethodMatcher.getConformingArguments(DataProviderMethodMatcher.java:52)
-	at org.testng.internal.Invoker.injectParameters(Invoker.java:1278)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1171)
+              <![CDATA[org.openqa.selenium.NoSuchElementException: Unable to locate element: //button[contains(text(),'Add Account')]
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.1.0', revision: 'b94c902', time: '2017-02-16 12:21:31 -0800'
+System info: host: 'BHUSHAYA', ip: '10.71.71.93', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_131'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{rotatable=false, raisesAccessibilityExceptions=false, marionette=true, appBuildId=20170125094131, version=, platform=XP, proxy={}, command_id=1, specificationLevel=0, acceptSslCerts=false, processId=7680, browserVersion=51.0.1, platformVersion=6.1, XULappId={ec8030f7-c20a-464f-9b0e-13a3a9e97384}, browserName=firefox, takesScreenshot=true, takesElementScreenshot=true, platformName=windows_nt, firefox_profile=UEsDBBQACAgIACyYukoAAAAAAAAAA...}]
+Session ID: 124c27b3-4aeb-4f3b-ba5d-408c51bec134
+*** Element info: {Using=xpath, value=//button[contains(text(),'Add Account')]}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:127)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:93)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:42)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:163)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:82)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:601)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:473)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:360)
+	at com.SAFUI.Utils.BasePage.click(BasePage.java:80)
+	at com.SAFUI.Pages.AccountsPage.clickAddAccountBtn(AccountsPage.java:35)
+	at com.SAFUI.Testscripts.AddAccountsTestScript.addNewAccount(AddAccountsTestScript.java:22)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:645)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
 	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
 	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
 	at org.testng.TestRunner.privateRun(TestRunner.java:756)
@@ -46,15 +112,128 @@ Arguments: [(java.lang.String)Advance rule test,(java.lang.String)CRITICAL,(java
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:81)
 ]]>
             </full-stacktrace>
-          </exception> <!-- org.testng.internal.reflect.MethodMatcherException -->
+          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- AddAdvanceRule -->
-        <test-method status="PASS" signature="closeBrowser()[pri:0, instance:com.SAFUI.Testscripts.AddAdvanceRuleTestScript@6093dd95]" name="closeBrowser" is-config="true" duration-ms="1255" started-at="2017-04-20T12:26:38Z" finished-at="2017-04-20T12:26:39Z">
+        </test-method> <!-- addNewAccount -->
+        <test-method status="PASS" signature="LogoutPage()[pri:0, instance:com.SAFUI.Testscripts.AddAccountsTestScript@3835c46]" name="LogoutPage" is-config="true" duration-ms="160" started-at="2017-05-26T19:03:49Z" finished-at="2017-05-26T19:03:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LogoutPage -->
+        <test-method status="PASS" signature="LoginPage()[pri:0, instance:com.SAFUI.Testscripts.AddAccountsTestScript@3835c46]" name="LoginPage" is-config="true" duration-ms="17101" started-at="2017-05-26T19:03:49Z" finished-at="2017-05-26T19:04:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginPage -->
+        <test-method status="FAIL" signature="addNewAccount(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.SAFUI.Testscripts.AddAccountsTestScript@3835c46]" name="addNewAccount" duration-ms="6116" started-at="2017-05-26T19:04:07Z" data-provider="addnewaccounts" finished-at="2017-05-26T19:04:13Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+          </params>
+          <exception class="org.openqa.selenium.NoSuchElementException">
+            <message>
+              <![CDATA[Unable to locate element: //button[contains(text(),'Add Account')]
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.1.0', revision: 'b94c902', time: '2017-02-16 12:21:31 -0800'
+System info: host: 'BHUSHAYA', ip: '10.71.71.93', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_131'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{rotatable=false, raisesAccessibilityExceptions=false, marionette=true, appBuildId=20170125094131, version=, platform=XP, proxy={}, command_id=1, specificationLevel=0, acceptSslCerts=false, processId=7680, browserVersion=51.0.1, platformVersion=6.1, XULappId={ec8030f7-c20a-464f-9b0e-13a3a9e97384}, browserName=firefox, takesScreenshot=true, takesElementScreenshot=true, platformName=windows_nt, firefox_profile=UEsDBBQACAgIACyYukoAAAAAAAAAA...}]
+Session ID: 124c27b3-4aeb-4f3b-ba5d-408c51bec134
+*** Element info: {Using=xpath, value=//button[contains(text(),'Add Account')]}]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.NoSuchElementException: Unable to locate element: //button[contains(text(),'Add Account')]
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.1.0', revision: 'b94c902', time: '2017-02-16 12:21:31 -0800'
+System info: host: 'BHUSHAYA', ip: '10.71.71.93', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_131'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{rotatable=false, raisesAccessibilityExceptions=false, marionette=true, appBuildId=20170125094131, version=, platform=XP, proxy={}, command_id=1, specificationLevel=0, acceptSslCerts=false, processId=7680, browserVersion=51.0.1, platformVersion=6.1, XULappId={ec8030f7-c20a-464f-9b0e-13a3a9e97384}, browserName=firefox, takesScreenshot=true, takesElementScreenshot=true, platformName=windows_nt, firefox_profile=UEsDBBQACAgIACyYukoAAAAAAAAAA...}]
+Session ID: 124c27b3-4aeb-4f3b-ba5d-408c51bec134
+*** Element info: {Using=xpath, value=//button[contains(text(),'Add Account')]}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:127)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:93)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:42)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:163)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:82)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:601)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:473)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:360)
+	at com.SAFUI.Utils.BasePage.click(BasePage.java:80)
+	at com.SAFUI.Pages.AccountsPage.clickAddAccountBtn(AccountsPage.java:35)
+	at com.SAFUI.Testscripts.AddAccountsTestScript.addNewAccount(AddAccountsTestScript.java:22)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:645)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:756)
+	at org.testng.TestRunner.run(TestRunner.java:610)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
+	at org.testng.TestNG.runSuites(TestNG.java:1133)
+	at org.testng.TestNG.run(TestNG.java:1104)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:236)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:81)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- addNewAccount -->
+        <test-method status="PASS" signature="LogoutPage()[pri:0, instance:com.SAFUI.Testscripts.AddAccountsTestScript@3835c46]" name="LogoutPage" is-config="true" duration-ms="126" started-at="2017-05-26T19:04:13Z" finished-at="2017-05-26T19:04:13Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LogoutPage -->
+        <test-method status="PASS" signature="closeBrowser()[pri:0, instance:com.SAFUI.Testscripts.AddAccountsTestScript@3835c46]" name="closeBrowser" is-config="true" duration-ms="4195" started-at="2017-05-26T19:04:13Z" finished-at="2017-05-26T19:04:17Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- closeBrowser -->
-      </class> <!-- com.SAFUI.Testscripts.AddAdvanceRuleTestScript -->
+      </class> <!-- com.SAFUI.Testscripts.AddAccountsTestScript -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

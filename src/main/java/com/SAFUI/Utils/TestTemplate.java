@@ -13,7 +13,8 @@ public class TestTemplate {
 	protected ConfigCenterPage configpage;
 	protected TopMenu menu;
 	protected BasePage base;
-	
+	protected UsersPage users;
+	protected AccountsPage account;
 	
 	@BeforeClass
 	public void BaseTest(){		
@@ -24,6 +25,8 @@ public class TestTemplate {
 		
 		login = new LoginPage(base);
 		configpage =new ConfigCenterPage(base);
+		users = new UsersPage(base);
+		account = new AccountsPage(base);
 		menu =new TopMenu(base);	
 	}
 	

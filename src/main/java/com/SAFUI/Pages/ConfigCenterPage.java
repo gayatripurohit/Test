@@ -128,7 +128,8 @@ public class ConfigCenterPage {
 		base.selecttext(attriDropbox, attri);
 		base.waitElementToBeClickableCondition(comparatorDropbox);
 		base.selecttext(comparatorDropbox, filtercompa);
-		
+		//base.waitElementToBeClickableCondition(filtertriggervalue);
+		//base.sendkeys(filtertriggervalue, "wlc");
 		base.sendkeys(filtertriggervalue,ftriggervalue);	
 		base.sleepMethod(2000);
 		
@@ -255,6 +256,7 @@ public class ConfigCenterPage {
 			e.getMessage();
 		}
 		System.out.println("Delete to string : " + deletebtn.toString());
+		base.sleepMethod(3000);
 	}
 	
 	

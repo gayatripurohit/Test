@@ -42,13 +42,17 @@ public class AddBasicRuleTestScript extends  TestTemplate{
 		configpage.clickOKBtn();
 		configpage.handleWindowAlert();
 				
-		menu.goToSearchPage(); // as the list is not displayed after creating a rule
-		menu.goToConfigCenterPage();
+		//menu.goToSearchPage(); // as the list is not displayed after creating a rule
+		//menu.goToConfigCenterPage();
 
 		Assert.assertEquals(rulenm,base.verifyContainsText(rulenm));
 	}
 
-
+	@AfterMethod
+	public void LogoutPage()
+	{
+		login.logoutBtn();			
+	}
 
 	
 	

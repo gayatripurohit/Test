@@ -16,6 +16,10 @@ public class DataProviderClass {
 	String  sheet4 = "Enable/Disable Rule";
 	String  sheet5 = "Login Credentials";
 	String  sheet6 = "Add Advance rules";
+	String  sheet7 = "Advance rule with 2 operands";
+	
+	String sheet8 = "Add Users";
+	String sheet9 = "Add Accounts";
 	String  filenm;
 	
 	
@@ -44,6 +48,14 @@ public class DataProviderClass {
 		return obj;
 	}
 	
+	@DataProvider (name = "Addadvancerule2operands")
+	public Object[][] getAddAdvanceRule2operandsTestData(){
+		obj = readexcel.readExcelSheet (filenm,sheet7);
+		return obj;
+	}
+
+	
+	
 	@DataProvider(name="Deleteruletestdata")
 	public Object[][] getDeleteRuleTestData(){
 		obj = readexcel.readExcelSheet( filenm, sheet2);	
@@ -54,6 +66,18 @@ public class DataProviderClass {
 	@DataProvider(name="Editruletestdata")
 	public Object[][] getEditRuleTestData(){
 		obj=readexcel.readExcelSheet( filenm, sheet3);	
+		return obj;
+	}	
+
+	@DataProvider(name="addnewuser")
+	public Object[][] getAddUserTestData(){
+		obj=readexcel.readExcelSheet( filenm, sheet8);	
+		return obj;
+	}	
+
+	@DataProvider(name="addnewaccounts")
+	public Object[][] getAddAccountTestData(){
+		obj=readexcel.readExcelSheet( filenm, sheet9);	
 		return obj;
 	}	
 

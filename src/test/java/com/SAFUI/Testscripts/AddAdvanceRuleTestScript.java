@@ -21,7 +21,7 @@ public class AddAdvanceRuleTestScript  extends  TestTemplate{
 	//advance rule with 1 operand
 	@Test(dataProvider="Addadvanceruletestdata",dataProviderClass=DataProviderClass.class)
 	public void AddAdvanceRule(String rulenm,String severity,String attri, String filtercompa,String filtertriggervalue,
-								String exprmetric, String operand1,String operand2 , String aggregation,String expression,String conditioncompa,
+								String exprmetric, String operand1 , String aggregation,String expression,String conditioncompa,
 								String conditiontriggervalue,String timewindow,String msgtemplate, String conditionexpr,String notifyrule)
 	{
 		System.out.println("in AddAdvanceRule()");

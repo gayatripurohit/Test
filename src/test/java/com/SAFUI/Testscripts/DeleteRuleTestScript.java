@@ -31,7 +31,7 @@ public class DeleteRuleTestScript extends  TestTemplate {
 			System.out.println("Rule not found !!"+rulenm);
 			}	
 			
-		Assert.assertFalse(base.verifyContainsTextbyboolean(rulenm));
+		Assert.assertTrue(base.verifyContainsTextbyboolean(rulenm));
 	}
 	
 	@AfterMethod
